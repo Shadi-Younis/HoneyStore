@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر شهد وبركة | للعسل والتمور الفاخرة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">شهد وبركة</div>
+        <ul>
+            <li><a href="#honey">قسم العسل</a></li>
+            <li><a href="#dates">قسم التمور</a></li>
+            <li><a href="#about">من نحن</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>أجود أنواع العسل الطبيعي والتمور الفاخرة</h1>
+    <p>من المناحل والمزارع إليكم مباشرة.. جودة نضمنها لك.</p>
+    <a href="#products" class="btn-main">تصفح المنتجات</a>
+</section>
+
+<section id="products" class="filter-section">
+    <button onclick="filterSelection('all')">الكل</button>
+    <button onclick="filterSelection('honey')">عسل</button>
+    <button onclick="filterSelection('dates')">تمور</button>
+</section>
+
+<div class="container">
+    <div class="products-grid">
+
+        <div class="product-item honey">
+            <img src="images/honey-seder.jpg" alt="عسل سدر">
+            <h3>عسل سدر جبلي</h3>
+            <p>وصف مختصر للفوائد والجودة...</p>
+            <span class="price">150 ريال</span>
+            <button class="whatsapp-btn">اطلب عبر واتساب</button>
+        </div>
+
+        <div class="product-item dates">
+            <img src="images/dates-magdool.jpg" alt="تمر مجدول">
+            <h3>تمر مجدول فاخر</h3>
+            <p>حبة كبيرة كرتون 1 كيلو...</p>
+            <span class="price">80 ريال</span>
+            <button class="whatsapp-btn">اطلب عبر واتساب</button>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>تواصل معنا: 00966XXXXXXXX</p>
+    <p>جميع الحقوق محفوظة لمتجر شهد وبركة &copy; 2026</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
