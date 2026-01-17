@@ -48,3 +48,18 @@ function sendOrder(productName, price) {
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
 }
+function openAbout() {
+    document.getElementById("aboutModal").style.display = "block";
+}
+
+function closeAbout() {
+    document.getElementById("aboutModal").style.display = "none";
+}
+
+// إغلاق النافذة عند الضغط في أي مكان خارج المربع
+window.onclick = function(event) {
+    let modal = document.getElementById("aboutModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
