@@ -11,9 +11,12 @@
 
 <header>
     <nav>
-        <div class="logo">شهد وبركة</div>
+        <div class="logo">متجر شهد وبركة</div>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span id="cart-count">0</span>
+        </div>
         <ul>
-            <li><a href="#products" onclick="filterSelection('honey')">قسم العسل</a></li>
+            <li><a href="#products" onclick="filterSelection('honey')">قسم العسـل </a></li>
             <li><a href="#products" onclick="filterSelection('dates')">قسم التمور</a></li>
             <li><a href="javascript:void(0)" onclick="openAbout()">من نحن</a></li>
         </ul>
@@ -40,8 +43,8 @@
             <h3>عسل زهور برية</h3>
             <p>طبيعي 100%، مستخلص من رحيق أزهار البرية المتنوعة.</p>
             <span class="price">80 شيكل</span>
-            <button class="whatsapp-btn" onclick="sendOrder('عسل زهور برية', '80 شيكل')">
-                اطلب عبر واتساب
+            <button class="whatsapp-btn" onclick="addToCart('عسل زهور برية', '80 شيكل')">
+                اضف لسلة المشتريات
             </button>
         </div>
 
@@ -50,8 +53,8 @@
             <h3>عسل كينا فاخر</h3>
             <p>يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.</p>
             <span class="price">90 شيكل</span>
-            <button class="whatsapp-btn" onclick="sendOrder('عسل كينا', '90 شيكل')">
-                اطلب عبر واتساب
+            <button class="whatsapp-btn" onclick="addToCart('عسل كينا', '90 شيكل')">
+                اضف لسلة المشتريات
             </button>
         </div>
 
@@ -60,8 +63,8 @@
             <h3>حبيبات اللقاح</h3>
             <p>غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.</p>
             <span class="price">50 شيكل</span>
-            <button class="whatsapp-btn" onclick="sendOrder('حبيبات اللقاح', '50 شيكل')">
-                اطلب عبر واتساب
+            <button class="whatsapp-btn" onclick="addToCart('حبيبات اللقاح', '50 شيكل')">
+                اضف لسلة المشتريات
             </button>
         </div>
 
@@ -70,8 +73,8 @@
             <h3>تمر مجدول (مجهول) فاخر</h3>
             <p>حبة كبيرة، مذاق غني، فرز أول من أجود المزارع.</p>
             <span class="price">70 شيكل</span>
-            <button class="whatsapp-btn" onclick="sendOrder('تمر مجدول فاخر', '70 شيكل')">
-                اطلب عبر واتساب
+            <button class="whatsapp-btn" onclick="addToCart('تمر مجدول فاخر', '70 شيكل')">
+                اضف لسلة المشتريات
             </button>
         </div>
 
@@ -80,8 +83,8 @@
             <h3>تمر صقعي</h3>
             <p>تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.</p>
             <span class="price">60 شيكل</span>
-            <button class="whatsapp-btn" onclick="sendOrder('تمر صقعي', '60 شيكل')">
-                اطلب عبر واتساب
+            <button class="whatsapp-btn" onclick="addToCart('تمر صقعي', '60 شيكل')">
+                اضف لسلة المشتريات
             </button>
         </div>
 
@@ -102,6 +105,19 @@
         <div class="about-text">
             <p>في <strong>شهد وبركة</strong>، نؤمن بأن الطبيعة هي خير دواء. بدأنا رحلتنا من الشغف بتقديم أجود أنواع العسل الطبيعي والتمور المختارة بعناية.</p>
             <p>كل قطرة عسل وحبة تمر في متجرنا تمر بفحوصات دقيقة لضمان وصولها إليكم بأعلى معايير الجودة.</p>
+        </div>
+    </div>
+</div>
+
+<div id="cartModal" class="cart-sidebar">
+    <div class="cart-content">
+        <span class="close-btn" onclick="toggleCart()">&times;</span>
+        <h2>سلة المشتريات</h2>
+        <div id="cart-items">
+        </div>
+        <div class="cart-footer">
+            <p>الإجمالي: <span id="total-price">0</span> شيكل</p>
+            <button class="whatsapp-btn" onclick="sendCartToWhatsapp()">إتمام الطلب عبر واتساب</button>
         </div>
     </div>
 </div>

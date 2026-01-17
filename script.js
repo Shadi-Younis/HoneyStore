@@ -32,20 +32,68 @@ function updateActiveButton(category) {
     // إيجاد الزر الذي تم ضغطه وتمييزه (يمكن تحسين هذا الجزء لاحقاً في CSS)
     // حالياً الكود سيعمل على إظهار وإخفاء المنتجات فوراً
 }
-function sendOrder(productName, price) {
-    const phoneNumber = "522344536"; // ضع رقمك هنا بدون أصفار أو علامة +
+let cart = [];
 
-    // تنسيق الرسالة
-    const message = `مرحباً شهد وبركة، أود طلب:
-- المنتج: ${productName}
-- السعر: ${price}
-هل المنتج متوفر حالياً؟`;
+function addToCart(name, price) {
+    // إضافة المنتج للمصفوفة
+    cart.push({ name, price: parseInt(price) });
+    updateCartUI();
+}
 
-    // تحويل النص إلى تنسيق يفهمه المتصفح (URL Encoding)
+function updateCartUI() {
+    // تحديث رقم العداد
+    document.getElementById("cart-count").innerText = cart.length;
+
+    // عرض المنتجات في السلة
+    const cartItemsDiv = document.getElementById("cart-items");
+    cartItemsDiv.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        cartItemsDiv.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name} - ${item.price} شيكل</span>
+                <button onclick="removeFromCart(${index})">حذف</button>
+            </div>
+        `;
+    });
+    document.getElementById("total-price").innerText = total;
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function toggleCart() {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = (modal.style.display === "block") ? "none" : "block";
+}
+
+function sendCartToWhatsapp() {
+    if (cart.length === 0) {
+        alert("السلة فارغة!");
+        return;
+    }
+
+    const phoneNumber = "52-234-4536"; // تأكد من الرقم بدون + أو أصفار في البداية
+    let message = "مرحباً شهد وبركة، أود طلب المنتجات التالية:\n\n";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name} - ${item.price} شيكل\n`;
+        total += item.price;
+    });
+
+    message += `\nإجمالي المبلغ: ${total} شيكل`;
+
+    // الحل السحري هنا: تشفير الرسالة بالكامل
     const encodedMessage = encodeURIComponent(message);
 
-    // إنشاء الرابط وفتحه في نافذة جديدة
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    // استخدام الرابط المخصص للواتساب (api.whatsapp.com أو wa.me)
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
     window.open(whatsappURL, '_blank');
 }
 function openAbout() {
