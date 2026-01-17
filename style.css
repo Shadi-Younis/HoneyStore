@@ -226,3 +226,40 @@ footer {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* تنسيقات خاصة لشاشات الموبايل (أقل من 768 بكسل) */
+@media (max-width: 768px) {
+    /* تصغير الآية القرآنية لتناسب الشاشة */
+    .hero h2 {
+        font-size: 1.5rem !important; /* تقليل الحجم */
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    /* تصغير نص الوصف تحت الآية */
+    .hero p {
+        font-size: 1rem !important;
+        padding: 0 15px;
+    }
+
+    /* جعل قسم الترحيب يأخذ مساحة مناسبة */
+    .hero {
+        height: 50vh; /* تقليل الارتفاع في الموبايل */
+    }
+
+    /* تعديل حجم لوجو الموقع في الهيدر */
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    /* جعل أزرار الفلترة أصغر قليلاً لتكون بجانب بعضها */
+    .filter-section button {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+
+    /* ضبط عرض بطاقات المنتجات */
+    .product-item img {
+        height: 200px; /* تقليل ارتفاع الصورة في الموبايل */
+    }
+}
