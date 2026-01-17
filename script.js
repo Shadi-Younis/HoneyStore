@@ -1,25 +1,25 @@
 function filterSelection(category) {
-    // جلب جميع العناصر التي لها كلاس 'product-item'
     let products = document.getElementsByClassName("product-item");
+    let buttons = document.querySelectorAll(".filter-section button");
 
-    // إذا اختار المستخدم "الكل"، نظهر جميع المنتجات
-    if (category === "all") {
-        for (let i = 0; i < products.length; i++) {
+    // 1. منطق إظهار وإخفاء المنتجات
+    for (let i = 0; i < products.length; i++) {
+        if (category === "all" || products[i].classList.contains(category)) {
             products[i].style.display = "block";
-        }
-    } else {
-        // نمر على كل منتج، إذا كان الكلاس الخاص به يطابق التصنيف المختار نظهره، وإلا نخفيه
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].classList.contains(category)) {
-                products[i].style.display = "block";
-            } else {
-                products[i].style.display = "none";
-            }
+        } else {
+            products[i].style.display = "none";
         }
     }
 
-    // لمسة إضافية: تغيير شكل الزر النشط (Active Button)
-    updateActiveButton(category);
+    // 2. تلوين الزر المضغوط (هذا الجزء اللي فيه المشكلة)
+    buttons.forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    // نستخدم event.currentTarget لضمان تحديد الزر الصحيح
+    if (event) {
+        event.currentTarget.classList.add("active");
+    }
 }
 
 function updateActiveButton(category) {

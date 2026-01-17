@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <title>متجر شهد وبركة | للعسل والتمور الفاخرة</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,21 +13,21 @@
     <nav>
         <div class="logo">شهد وبركة</div>
         <ul>
-            <li><a href="#honey">قسم العسل</a></li>
-            <li><a href="#dates">قسم التمور</a></li>
+            <li><a href="#products" onclick="filterSelection('honey')">قسم العسل</a></li>
+            <li><a href="#products" onclick="filterSelection('dates')">قسم التمور</a></li>
             <li><a href="#about">من نحن</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="hero">
-    <h1>أجود أنواع العسل الطبيعي والتمور الفاخرة</h1>
+    <h2>﴿يَخۡرُجُ مِنۢ بُطُونِهَا شَرَابٞ مُّخۡتَلِفٌ أَلۡوَٰنُهُۥ فِيهِ شِفَآءٞ لِّلنَّاسِ﴾ [النحل: 69]</h2>
     <p>من المناحل والمزارع إليكم مباشرة.. جودة نضمنها لك.</p>
     <a href="#products" class="btn-main">تصفح المنتجات</a>
 </section>
 
 <section id="products" class="filter-section">
-    <button onclick="filterSelection('all')">الكل</button>
+    <button class="active" onclick="filterSelection('all')">الكل</button>
     <button onclick="filterSelection('honey')">عسل</button>
     <button onclick="filterSelection('dates')">تمور</button>
 </section>
@@ -86,6 +87,19 @@
 
     </div>
 </div>
+
+<section id="about" class="about-section">
+    <div class="container">
+        <h2>من نحن</h2>
+        <div class="about-content">
+            <p>
+                في <strong>شهد وبركة</strong>، نؤمن بأن الطبيعة هي خير دواء. بدأنا رحلتنا من الشغف بتقديم أجود أنواع العسل الطبيعي والتمور المختارة بعناية من أفضل المزارع.
+                كل قطرة عسل وحبة تمر في متجرنا تمر بفحوصات دقيقة لضمان وصولها إليكم بأعلى معايير الجودة والأصالة.
+            </p>
+            <p>هدفنا ليس مجرد البيع، بل نشر ثقافة الغذاء الصحي والعودة للبركة في طعامنا اليومي.</p>
+        </div>
+    </div>
+</section>
 
 <footer>
     <p>تواصل معنا: 52-234-4536</p>
