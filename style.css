@@ -286,24 +286,47 @@ nav ul li a:hover {
     color: #ff4d4d;
 }
 
-/* 9. الموبايل (التجاوب) */
+/* زر المنيو مخفي في الحاسوب */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #b8860b;
+}
+
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* يظهر فقط في الموبايل */
+    }
+
     nav ul {
-        display: none;
+        display: none; /* مخفي افتراضياً */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    /* عندما نضيف هذا الكلاس بالجافا سكريبت تظهر القائمة */
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
     }
 
     .logo {
-        position: static;
-        transform: none;
-        left: auto;
-        flex: 1;
-        text-align: right;
-        font-size: 1.5rem;
+        font-size: 1.3rem !important;
+        position: static !important;
+        transform: none !important;
     }
-
-    .hero h2 { font-size: 1.6rem !important; }
-    .product-item img { height: 200px; }
-    .cart-sidebar { width: 100%; }
 }
 
 @keyframes fadeIn {

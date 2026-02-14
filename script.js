@@ -149,3 +149,15 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function toggleMenu() {
+    const navLinks = document.getElementById("nav-links");
+    navLinks.classList.toggle("active");
+}
+
+// إغلاق المنيو تلقائياً عند الضغط على أي قسم
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById("nav-links").classList.remove("active");
+    });
+});
