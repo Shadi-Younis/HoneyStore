@@ -366,3 +366,61 @@ footer {
     background-color: #cc0000;
     transform: scale(1.1);
 }
+/* تنسيقات خاصة للموبايل (شاشات أصغر من 768px) */
+@media (max-width: 768px) {
+    /* 1. الهيدر: ترتيب اللوجو والسلة */
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    /* تصغير حجم الخط في اللوجو والقائمة */
+    .logo {
+        font-size: 1.2rem !important;
+        position: static !important; /* إلغاء التوسيط المطلق */
+        transform: none !important;
+    }
+
+    nav ul {
+        display: none; /* إخفاء القائمة الطويلة واستبدالها لاحقاً بمنيو */
+    }
+
+    /* 2. قسم الـ Hero: تصغير الآية القرآنية */
+    .hero h2 {
+        font-size: 1.4rem !important;
+        line-height: 1.6;
+        padding: 0 15px;
+    }
+
+    .hero p {
+        font-size: 1rem !important;
+    }
+
+    /* 3. شبكة المنتجات: عرض منتج واحد أو اثنين في السطر */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+        gap: 15px !important;
+        padding: 10px;
+    }
+
+    /* تصغير صور المنتجات */
+    .product-item img {
+        height: 180px !important;
+    }
+
+    .product-item h3 {
+        font-size: 1.1rem;
+    }
+
+    /* 4. السلة الجانبية: جعلها تغطي كامل الشاشة */
+    .cart-sidebar {
+        width: 100% !important;
+    }
+
+    /* 5. النافذة المنبثقة (About): تصغير المساحات */
+    .modal-content {
+        width: 95% !important;
+        padding: 20px !important;
+    }
+}
