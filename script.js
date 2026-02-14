@@ -72,30 +72,41 @@ function toggleCart() {
 }
 
 function sendCartToWhatsapp() {
-    if (cart.length === 0) {
-        alert("السلة فارغة!");
+    const name = document.getElementById("user-name").value;
+    const address = document.getElementById("user-address").value;
+    const phone = document.getElementById("user-phone").value;
+
+    if (cart.length === 0 || !name || !address) {
+        alert("يرجى التأكد من المنتجات وتعبئة الاسم والعنوان.");
         return;
     }
 
-    // التعديل الجوهري هنا: رقم الهاتف يجب أن يكون أرقاماً فقط بدون شرطات أو أصفار دولية في البداية
-    // إذا كان الرقم فلسطيني يبدأ بـ 970، وإذا كان إسرائيلي يبدأ بـ 972
-    // مثال: 972522344536
     const phoneNumber = "972522344536";
 
-    let message = "مرحباً شهد وبركة، أود طلب المنتجات التالية:\n\n";
+    // بناء الرسالة باستخدام متغيرات منفصلة لضمان التشفير الصحيح
+    let header = "*طلب جديد من متجر شهد وبركة*";
+    let userInfo = "\n\n" + "👤 *الاسم:* " + name +
+        "\n" + "📍 *الموقع:* " + address +
+        "\n" + "📞 *رقم التواصل:* " + (phone || "غير محدد");
+
+    let divider = "\n--------------------------\n";
+    let productsHeader = "📦 *المنتجات:*\n";
+    let productsList = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.name} - ${item.price} شيكل\n`;
+        productsList += (index + 1) + ". " + item.name + " (" + item.price + " شيكل)\n";
         total += item.price;
     });
 
-    message += `\nإجمالي المبلغ: ${total} شيكل`;
+    let footer = divider + "💰 *إجمالي المبلغ:* " + total + " شيكل";
 
-    const encodedMessage = encodeURIComponent(message);
+    // تجميع الرسالة كاملة
+    let fullMessage = header + userInfo + divider + productsHeader + productsList + footer;
 
-    // استخدام رابط wa.me وهو الأفضل لفتح محادثة مباشرة مع رقم غير مسجل
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    // التشفير النهائي
+    const encodedMessage = encodeURIComponent(fullMessage);
+    const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
 
     window.open(whatsappURL, '_blank');
 }

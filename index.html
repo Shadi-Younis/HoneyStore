@@ -178,8 +178,16 @@
     <div class="cart-content">
         <span class="close-btn" onclick="toggleCart()">&times;</span>
         <h2>سلة المشتريات</h2>
-        <div id="cart-items">
+
+        <div id="cart-items"></div>
+
+        <div class="user-info">
+            <h3>بيانات التوصيل</h3>
+            <input type="text" id="user-name" placeholder="الاسم الكامل" required>
+            <input type="text" id="user-address" placeholder="الموقع / المدينة" required>
+            <input type="tel" id="user-phone" placeholder="رقم للتواصل">
         </div>
+
         <div class="cart-footer">
             <p>الإجمالي: <span id="total-price">0</span> شيكل</p>
             <button class="whatsapp-btn" onclick="sendCartToWhatsapp()">إتمام الطلب عبر واتساب</button>

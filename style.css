@@ -328,3 +328,18 @@ footer {
     border-radius: 50%; position: absolute;
     top: -5px; right: -10px;
 }
+.user-info {
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}
+.user-info h3 { font-size: 1.2rem; color: #b8860b; margin-bottom: 10px; }
+.user-info input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Amiri', serif;
+}
