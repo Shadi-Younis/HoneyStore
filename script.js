@@ -77,7 +77,11 @@ function sendCartToWhatsapp() {
         return;
     }
 
-    const phoneNumber = "52-234-4536"; // تأكد من الرقم بدون + أو أصفار في البداية
+    // التعديل الجوهري هنا: رقم الهاتف يجب أن يكون أرقاماً فقط بدون شرطات أو أصفار دولية في البداية
+    // إذا كان الرقم فلسطيني يبدأ بـ 970، وإذا كان إسرائيلي يبدأ بـ 972
+    // مثال: 972522344536
+    const phoneNumber = "972522344536";
+
     let message = "مرحباً شهد وبركة، أود طلب المنتجات التالية:\n\n";
     let total = 0;
 
@@ -88,11 +92,10 @@ function sendCartToWhatsapp() {
 
     message += `\nإجمالي المبلغ: ${total} شيكل`;
 
-    // الحل السحري هنا: تشفير الرسالة بالكامل
     const encodedMessage = encodeURIComponent(message);
 
-    // استخدام الرابط المخصص للواتساب (api.whatsapp.com أو wa.me)
-    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    // استخدام رابط wa.me وهو الأفضل لفتح محادثة مباشرة مع رقم غير مسجل
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     window.open(whatsappURL, '_blank');
 }
