@@ -11,20 +11,22 @@
 
 <header>
     <nav>
-        <div class="logo"> متجر شهد وبركة</div>
-        <div class="cart-icon" onclick="toggleCart()">
-            🛒 <span id="cart-count">0</span>
-        </div>
         <ul>
             <li><a href="#products" onclick="filterSelection('honey')">قسم العسـل </a></li>
             <li><a href="#products" onclick="filterSelection('dates')">قسم التمور</a></li>
             <li><a href="javascript:void(0)" onclick="openAbout()">من نحن</a></li>
         </ul>
+
+        <div class="logo">متجر شهد وبركة</div>
+
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span id="cart-count">0</span>
+        </div>
     </nav>
 </header>
 
 <section class="hero">
-    <h2>﴿يَخۡرُجُ مِنۢ بُطُونِهَا شَرَابٌ مُّخۡتَلِفٌ أَلۡوَٰنُهُۥ فِيهِ شِفَآءٌٞ لِّلنَّاسِ﴾ [النحل: 69]</h2>
+    <h2>﴿يَخۡرُجُ مِنۢ بُطُونِهَا شَرَابٌ مُّخۡتَلِفٌ أَلۡوَٰنُهُۥ فِيهِ شِفَآءٌٞ لِّلنَّاسِ﴾ [النحل: 69]</h2>
     <p>من المناحل والمزارع إليكم مباشرة.. جودة نضمنها لك.</p>
     <a href="#products" class="btn-main">تصفح المنتجات</a>
 </section>
@@ -43,7 +45,7 @@
             <h3>عسل زهور برية</h3>
             <p>طبيعي 100%، مستخلص من رحيق أزهار البرية المتنوعة.</p>
             <span class="price">80 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('عسل زهور برية', '80 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('عسل زهور برية', 80)">
                 اضف لسلة المشتريات
             </button>
         </div>
@@ -53,7 +55,7 @@
             <h3>عسل كينا فاخر</h3>
             <p>يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.</p>
             <span class="price">90 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('عسل كينا', '90 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('عسل كينا', 90)">
                 اضف لسلة المشتريات
             </button>
         </div>
@@ -63,92 +65,67 @@
             <h3>حبيبات اللقاح</h3>
             <p>غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.</p>
             <span class="price">50 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('حبيبات اللقاح', '50 شيكل')">
-                اضف لسلة المشتريات
-            </button>
-        </div>
-        <div class="product-item honey">
-            <img src="images/عسل-مكسرات.jpeg" alt="عسل-مكسرات">
-            <h3>عسل-مكسرات</h3>
-            <p>غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.</p>
-            <span class="price">50 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('عسل-مكسرات', '50 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('حبيبات اللقاح', 50)">
                 اضف لسلة المشتريات
             </button>
         </div>
 
         <div class="product-item honey">
-            <img src="images/عسل-سدر.jpeg" alt="عسل-سدر">
-            <h3>عسل-سدر</h3>
-            <p>غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.</p>
+            <img src="images/عسل-مكسرات.jpeg" alt="عسل-مكسرات">
+            <h3>عسل مكسرات</h3>
+            <p>مزيج رائع من العسل الطبيعي والمكسرات المحمصة.</p>
             <span class="price">50 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('عسل-سدر', '50 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('عسل مكسرات', 50)">
                 اضف لسلة المشتريات
             </button>
         </div>
 
         <div class="product-item dates">
             <img src="images/رهايف-تمر.jpeg" alt="رهايف-تمر">
-            <h3>رهايف-تمر</h3>
+            <h3>رهايف تمر</h3>
             <p>حبة كبيرة، مذاق غني، فرز أول من أجود المزارع.</p>
             <span class="price">70 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('رهايف-تمر', '70 شيكل')">
-                اضف لسلة المشتريات
-            </button>
-        </div>
-        <div class="product-item dates">
-            <img src="images/رهايف-تمر2.jpeg" alt="رهايف-تمر">
-            <h3>رهايف-تمر</h3>
-            <p>حبة كبيرة، مذاق غني، فرز أول من أجود المزارع.</p>
-            <span class="price">70 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('رهايف-تمر', '70 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('رهايف تمر', 70)">
                 اضف لسلة المشتريات
             </button>
         </div>
 
         <div class="product-item dates">
             <img src="images/تمرية-بالقمح-الابيض.jpeg" alt="تمرية-بالقمح-الابيض">
-            <h3>تمرية-بالقمح-الابيض</h3>
+            <h3>تمرية بالقمح الأبيض</h3>
             <p>تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.</p>
             <span class="price">60 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('تمرية-بالقمح-الابيض', '60 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('تمرية بالقمح الأبيض', 60)">
                 اضف لسلة المشتريات
             </button>
         </div>
-        <div class="product-item dates">
-            <img src="images/تمريتي-شوكلاته.jpeg" alt="تمريتي-شوكلاته">
-            <h3>تمريتي-شوكلاته</h3>
-            <p>تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.</p>
-            <span class="price">60 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('تمريتي-شوكلاته', '60 شيكل')">
-                اضف لسلة المشتريات
-            </button>
-        </div>
+
         <div class="product-item dates">
             <img src="images/تمريتي.jpeg" alt="تمريتي">
             <h3>تمريتي</h3>
             <p>تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.</p>
             <span class="price">60 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('تمريتي', '60 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('تمريتي', 60)">
                 اضف لسلة المشتريات
             </button>
         </div>
+
         <div class="product-item dates">
             <img src="images/تمرية-بالقمح-الآسمر.jpeg" alt="تمرية-بالقمح-الآسمر">
-            <h3>تمرية-بالقمح-الآسمر</h3>
-            <p>تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.</p>
+            <h3>تمرية بالقمح الأسمر</h3>
+            <p>خيار صحي غني بالألياف مع طعم التمر الأصيل.</p>
             <span class="price">60 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('تمرية-بالقمح-الآسمر', '60 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('تمرية بالقمح الأسمر', 60)">
                 اضف لسلة المشتريات
             </button>
         </div>
 
         <div class="product-item dates">
             <img src="images/سمسم-بالطحينة.jpeg" alt="سمسم-بالطحينة">
-            <h3>سمسم-بالطحينة</h3>
-            <p>تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.</p>
+            <h3>سمسم بالطحينة</h3>
+            <p>حلى طبيعي يجمع بين فوائد السمسم والطحينة الفاخرة.</p>
             <span class="price">60 شيكل</span>
-            <button class="whatsapp-btn" onclick="addToCart('سمسم-بالطحينة', '60 شيكل')">
+            <button class="whatsapp-btn" onclick="addToCart('سمسم بالطحينة', 60)">
                 اضف لسلة المشتريات
             </button>
         </div>

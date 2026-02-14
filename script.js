@@ -32,37 +32,63 @@ function updateActiveButton(category) {
     // إيجاد الزر الذي تم ضغطه وتمييزه (يمكن تحسين هذا الجزء لاحقاً في CSS)
     // حالياً الكود سيعمل على إظهار وإخفاء المنتجات فوراً
 }
+// مصفوفة السلة الأصلية
 let cart = [];
 
 function addToCart(name, price) {
-    // إضافة المنتج للمصفوفة
-    cart.push({ name, price: parseInt(price) });
+    // التأكد من تحويل السعر لرقم لتجنب NaN
+    const itemPrice = Number(price);
+
+    const existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        // إضافة المنتج مع التأكد من أن السعر رقم
+        cart.push({ name: name, price: itemPrice, quantity: 1 });
+    }
+
     updateCartUI();
 }
-
 function updateCartUI() {
-    // تحديث رقم العداد
-    document.getElementById("cart-count").innerText = cart.length;
+    const cartItemsList = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const totalPriceElement = document.getElementById("total-price");
 
-    // عرض المنتجات في السلة
-    const cartItemsDiv = document.getElementById("cart-items");
-    cartItemsDiv.innerHTML = "";
+    cartItemsList.innerHTML = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price;
-        cartItemsDiv.innerHTML += `
-            <div class="cart-item">
-                <span>${item.name} - ${item.price} شيكل</span>
-                <button onclick="removeFromCart(${index})">حذف</button>
-            </div>
-        `;
+        // حساب سعر الكمية لهذا المنتج
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const li = document.createElement("li");
+        li.className = "cart-item";
+        // ابحث عن هذا الجزء داخل دالة updateCartUI وحدثه:
+        li.innerHTML = `
+    <button onclick="removeFromCart(${index})" class="delete-btn" title="تقليل الكمية">−</button>
+    <span>${item.name} (x${item.quantity}) - ${itemTotal} شيكل</span>
+`;
+        cartItemsList.appendChild(li);
     });
-    document.getElementById("total-price").innerText = total;
+
+    // تحديث السعر الإجمالي النهائي في السلة
+    totalPriceElement.innerText = total;
+    cartCount.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
 }
 
 function removeFromCart(index) {
-    cart.splice(index, 1);
+    // التحقق من كمية المنتج الموجود في هذا الترتيب (index)
+    if (cart[index].quantity > 1) {
+        // إذا كان أكثر من واحد، بنقص الكمية بس
+        cart[index].quantity -= 1;
+    } else {
+        // إذا كانت الكمية واحد فقط، بنحذف الصنف نهائياً من المصفوفة
+        cart.splice(index, 1);
+    }
+
+    // تحديث الواجهة والأسعار بعد التعديل
     updateCartUI();
 }
 
@@ -83,29 +109,27 @@ function sendCartToWhatsapp() {
 
     const phoneNumber = "972522344536";
 
-    // بناء الرسالة باستخدام متغيرات منفصلة لضمان التشفير الصحيح
-    let header = "طلب جديد من متجر شهد وبركة";
-    let userInfo = "\n\n" + " الاسم: " + name +
-        "\n" + " الموقع: " + address +
-        "\n" + " رقم التواصل: " + (phone || "غير محدد");
+    let message = "طلب جديد من متجر شهد وبركة\n\n";
+    message += "الاسم: " + name + "\n";
+    message += "الموقع: " + address + "\n";
+    message += "رقم التواصل: " + (phone || "غير محدد") + "\n";
+    message += "--------------------------\n";
+    message += "المنتجات:\n";
 
-    let divider = "\n--------------------------\n";
-    let productsHeader = "المنتجات:\n";
-    let productsList = "";
     let total = 0;
-
     cart.forEach((item, index) => {
-        productsList += (index + 1) + ". " + item.name + " (" + item.price + " شيكل)\n";
-        total += item.price;
+        // حساب السعر الإجمالي لهذا الصنف بناءً على الكمية
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        // التعديل الجوهري: إضافة الكمية (x) بجانب اسم المنتج في الرسالة
+        message += (index + 1) + ". " + item.name + " (x" + item.quantity + ") - " + itemTotal + " شيكل\n";
     });
 
-    let footer = divider + "إجمالي المبلغ: " + total + " شيكل";
+    message += "--------------------------\n";
+    message += "إجمالي المبلغ:" + total + " شيكل";
 
-    // تجميع الرسالة كاملة
-    let fullMessage = header + userInfo + divider + productsHeader + productsList + footer;
-
-    // التشفير النهائي
-    const encodedMessage = encodeURIComponent(fullMessage);
+    const encodedMessage = encodeURIComponent(message);
     const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
 
     window.open(whatsappURL, '_blank');

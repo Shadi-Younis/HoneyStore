@@ -7,12 +7,11 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* تعميم خط Amiri على كل الموقع ليعطي طابعاً عربياً أصيلاً */
     font-family: 'Amiri', serif;
 }
 
 body {
-    background-color: #fdfaf1; /* لون كريمي هادئ */
+    background-color: #fdfaf1;
     color: #333;
     line-height: 1.6;
 }
@@ -31,21 +30,18 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    direction: rtl;
+    position: relative;
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #b8860b;
-}
-
+/* القائمة في الجهة اليمنى */
 nav ul {
     display: flex;
     list-style: none;
 }
 
 nav ul li {
-    margin-right: 20px; /* المسافة من اليمين لأن الموقع RTL */
+    margin-left: 20px;
 }
 
 nav ul li a {
@@ -54,10 +50,46 @@ nav ul li a {
     font-weight: 700;
     font-size: 1.2rem;
     transition: 0.3s;
+    cursor: pointer; /* جعل الماوس يد */
 }
 
 nav ul li a:hover {
     color: #b8860b;
+}
+
+/* اسم المتجر في المنتصف تماماً */
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #b8860b;
+    white-space: nowrap;
+}
+
+/* سلة المشتريات في أقصى اليسار */
+.cart-icon {
+    cursor: pointer; /* جعل الماوس يد */
+    font-size: 1.6rem;
+    position: relative;
+    background: #fdfaf1;
+    padding: 8px;
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 1px solid #e0d5b0;
+}
+
+#cart-count {
+    background: #b8860b;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    border: 2px solid white;
 }
 
 /* 3. قسم الترحيب (Hero Section) */
@@ -75,7 +107,6 @@ nav ul li a:hover {
     padding: 20px;
 }
 
-/* تنسيق الآية القرآنية باللون الأبيض */
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 15px;
@@ -98,11 +129,7 @@ nav ul li a:hover {
     font-size: 1.3rem;
     font-weight: bold;
     transition: 0.3s;
-}
-
-.btn-main:hover {
-    background-color: #8b6508;
-    transform: scale(1.05);
+    cursor: pointer;
 }
 
 /* 4. أزرار الفلترة */
@@ -122,11 +149,6 @@ nav ul li a:hover {
     font-size: 1.2rem;
     font-weight: bold;
     transition: 0.3s;
-}
-
-.filter-section button.active, .filter-section button:hover {
-    background-color: #b8860b !important;
-    color: white !important;
 }
 
 /* 5. معرض المنتجات */
@@ -150,11 +172,6 @@ nav ul li a:hover {
     padding-bottom: 20px;
     border: 1px solid #eee;
     animation: fadeIn 0.6s ease-in-out;
-}
-
-.product-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .product-item img {
@@ -189,91 +206,54 @@ nav ul li a:hover {
     transition: 0.3s;
 }
 
-.whatsapp-btn:hover { background-color: #128c7e; }
-
-/* 6. قسم من نحن */
-.about-section {
-    padding: 80px 10%;
-    background-color: #fff;
-    text-align: center;
-    border-top: 2px solid #fdfaf1;
-}
-
-.about-section h2 {
-    color: #b8860b;
-    margin-bottom: 25px;
-    font-size: 2.2rem;
-}
-
-.about-content p {
-    max-width: 900px;
-    margin: 0 auto 20px;
-    font-size: 1.3rem;
-    color: #555;
-    line-height: 2;
-}
-
-/* 7. تذييل الصفحة */
-footer {
-    background: #333;
-    color: white;
-    padding: 30px;
-    text-align: center;
-}
-
-/* أنيميشن */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* تنسيقات خاصة لشاشات الموبايل (أقل من 768 بكسل) */
-@media (max-width: 768px) {
-    /* تصغير الآية القرآنية لتناسب الشاشة */
-    .hero h2 {
-        font-size: 1.5rem !important; /* تقليل الحجم */
-        line-height: 1.6;
-        padding: 0 10px;
-    }
-
-    /* تصغير نص الوصف تحت الآية */
-    .hero p {
-        font-size: 1rem !important;
-        padding: 0 15px;
-    }
-
-    /* جعل قسم الترحيب يأخذ مساحة مناسبة */
-    .hero {
-        height: 50vh; /* تقليل الارتفاع في الموبايل */
-    }
-
-    /* تعديل حجم لوجو الموقع في الهيدر */
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    /* جعل أزرار الفلترة أصغر قليلاً لتكون بجانب بعضها */
-    .filter-section button {
-        padding: 8px 15px;
-        font-size: 1rem;
-    }
-
-    /* ضبط عرض بطاقات المنتجات */
-    .product-item img {
-        height: 200px; /* تقليل ارتفاع الصورة في الموبايل */
-    }
-}
-/* تصميم النافذة المنبثقة */
-.modal {
-    display: none; /* مخفية بالبداية */
+/* 6. سلة المشتريات (Sidebar) */
+.cart-sidebar {
+    display: none;
     position: fixed;
-    z-index: 2000; /* لتظهر فوق كل شيء */
-    left: 0;
+    right: 0;
     top: 0;
-    width: 100%;
+    width: 350px;
     height: 100%;
-    background-color: rgba(0,0,0,0.6); /* خلفية معتمة */
-    backdrop-filter: blur(5px); /* تأثير تغبيش خلف النافذة */
+    background: white;
+    z-index: 3000;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+    padding: 25px;
+    overflow-y: auto;
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+/* 7. بيانات الزبون داخل السلة */
+.user-info {
+    margin: 25px 0;
+    padding: 15px;
+    background: #fdfaf1;
+    border-radius: 10px;
+    border: 1px solid #e0d5b0;
+    text-align: right;
+}
+
+.user-info input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* 8. النافذة المنبثقة (Modal) وإصلاح زر الإغلاق */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
@@ -286,60 +266,103 @@ footer {
     text-align: center;
     position: relative;
     animation: zoomIn 0.3s ease;
+    border: 2px solid #b8860b;
 }
 
+/* إصلاح زر الإغلاق (X) */
 .close-btn {
     position: absolute;
     top: 10px;
     left: 15px;
     font-size: 28px;
-    cursor: pointer;
+    cursor: pointer; /* الماوس يصير يد */
     color: #b8860b;
+    font-weight: bold;
+    transition: 0.3s;
+    user-select: none; /* منع تحديد النص */
+}
+
+.close-btn:hover {
+    color: #ff4d4d;
+}
+
+/* 9. الموبايل (التجاوب) */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+
+    .logo {
+        position: static;
+        transform: none;
+        left: auto;
+        flex: 1;
+        text-align: right;
+        font-size: 1.5rem;
+    }
+
+    .hero h2 { font-size: 1.6rem !important; }
+    .product-item img { height: 200px; }
+    .cart-sidebar { width: 100%; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes zoomIn {
     from { transform: scale(0.7); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
-.cart-sidebar {
-    display: none;
-    position: fixed;
-    right: 0; top: 0;
-    width: 300px; height: 100%;
-    background: white;
-    z-index: 3000;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-    padding: 20px;
+
+footer {
+    background: #333;
+    color: white;
+    padding: 30px;
+    text-align: center;
 }
 .cart-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-.cart-icon {
-    cursor: pointer;
-    font-size: 1.5rem;
-    position: relative;
-}
-#cart-count {
-    background: red; color: white;
-    font-size: 0.8rem; padding: 2px 6px;
-    border-radius: 50%; position: absolute;
-    top: -5px; right: -10px;
-}
-.user-info {
-    margin: 20px 0;
-    padding-top: 15px;
-    border-top: 1px solid #ddd;
-    text-align: right;
-}
-.user-info h3 { font-size: 1.2rem; color: #b8860b; margin-bottom: 10px; }
-.user-info input {
-    width: 100%;
+    align-items: center;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: 'Amiri', serif;
+    border-bottom: 1px solid #eee;
+    direction: rtl; /* لضمان الترتيب العربي الصحيح */
+}
+
+.cart-item button {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.cart-item button:hover {
+    background: #cc0000;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+    transform: scale(1.1);
 }
