@@ -84,13 +84,13 @@ function sendCartToWhatsapp() {
     const phoneNumber = "972522344536";
 
     // بناء الرسالة باستخدام متغيرات منفصلة لضمان التشفير الصحيح
-    let header = "*طلب جديد من متجر شهد وبركة*";
-    let userInfo = "\n\n" + "👤 *الاسم:* " + name +
-        "\n" + "📍 *الموقع:* " + address +
-        "\n" + "📞 *رقم التواصل:* " + (phone || "غير محدد");
+    let header = "طلب جديد من متجر شهد وبركة";
+    let userInfo = "\n\n" + " الاسم: " + name +
+        "\n" + " الموقع: " + address +
+        "\n" + " رقم التواصل: " + (phone || "غير محدد");
 
     let divider = "\n--------------------------\n";
-    let productsHeader = "📦 *المنتجات:*\n";
+    let productsHeader = "المنتجات:\n";
     let productsList = "";
     let total = 0;
 
@@ -99,7 +99,7 @@ function sendCartToWhatsapp() {
         total += item.price;
     });
 
-    let footer = divider + "💰 *إجمالي المبلغ:* " + total + " شيكل";
+    let footer = divider + "إجمالي المبلغ: " + total + " شيكل";
 
     // تجميع الرسالة كاملة
     let fullMessage = header + userInfo + divider + productsHeader + productsList + footer;
