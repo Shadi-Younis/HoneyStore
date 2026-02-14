@@ -12,8 +12,8 @@
 <header>
     <nav>
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <ul>
-            <li><a href="#products" onclick="filterSelection('honey')">قسم العسـل </a></li>
+        <ul id="nav-links">
+            <li><a href="#products" onclick="filterSelection('honey')">قسم العسـل</a></li>
             <li><a href="#products" onclick="filterSelection('dates')">قسم التمور</a></li>
             <li><a href="javascript:void(0)" onclick="openAbout()">من نحن</a></li>
         </ul>
@@ -44,7 +44,7 @@
         <div class="product-item honey">
             <img src="images/عسل-ازهار-برية.jpeg" alt="عسل زهور برية">
             <h3>عسل زهور برية</h3>
-            <p>طبيعي 100%، مستخلص من رحيق أزهار البرية المتنوعة.</p>
+            <p>طبيعي مستخلص من رحيق أزهار البرية المتنوعة.</p>
             <span class="price">80 شيكل</span>
             <button class="whatsapp-btn" onclick="addToCart('عسل زهور برية', 80)">
                 اضف لسلة المشتريات
@@ -57,6 +57,16 @@
             <p>يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.</p>
             <span class="price">90 شيكل</span>
             <button class="whatsapp-btn" onclick="addToCart('عسل كينا', 90)">
+                اضف لسلة المشتريات
+            </button>
+        </div>
+
+        <div class="product-item honey">
+            <img src="images/عسل-سدر.jpeg" alt="عسل سدر">
+            <h3>عسل سدر فاخر</h3>
+            <p>من أجود أنواع العسل، يتميز برائحة ذكية وطعم أصيل وفوائد علاجية مذهلة.</p>
+            <span class="price">150 شيكل</span>
+            <button class="whatsapp-btn" onclick="addToCart('عسل سدر', 150)">
                 اضف لسلة المشتريات
             </button>
         </div>

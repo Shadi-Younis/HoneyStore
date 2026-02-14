@@ -296,36 +296,38 @@ nav ul li a:hover {
 
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block; /* يظهر فقط في الموبايل */
+        display: block; /* إظهار أيقونة الهامبورغر */
+        order: 1; /* وضعها في اليمين */
+    }
+
+    .logo {
+        order: 2; /* وضع اللوجو في المنتصف */
+        font-size: 1.3rem !important;
+        position: static !important;
+        transform: none !important;
+    }
+
+    .cart-icon {
+        order: 3; /* وضع السلة في اليسار */
     }
 
     nav ul {
         display: none; /* مخفي افتراضياً */
         flex-direction: column;
         position: absolute;
-        top: 100%;
-        right: 0;
+        top: 100%; /* تظهر تحت الهيدر مباشرة */
+        left: 0;
         width: 100%;
         background: white;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        padding: 20px;
-        z-index: 1000;
-    }
-
-    /* عندما نضيف هذا الكلاس بالجافا سكريبت تظهر القائمة */
-    nav ul.active {
-        display: flex;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        z-index: 2000;
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 15px 0;
         text-align: center;
-    }
-
-    .logo {
-        font-size: 1.3rem !important;
-        position: static !important;
-        transform: none !important;
+        width: 100%;
     }
 }
 

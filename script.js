@@ -152,7 +152,12 @@ window.onclick = function(event) {
 
 function toggleMenu() {
     const navLinks = document.getElementById("nav-links");
-    navLinks.classList.toggle("active");
+    // التحقق من الحالة الحالية وتبديلها
+    if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+    } else {
+        navLinks.style.display = "flex";
+    }
 }
 
 // إغلاق المنيو تلقائياً عند الضغط على أي قسم
