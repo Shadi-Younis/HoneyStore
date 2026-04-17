@@ -178,8 +178,65 @@ function toggleCart() {
 }
 
 // ==========================================
-// 3. إتمام الطلب عبر الواتساب
+// 3. إتمام الطلب عبر الواتساب وإنشاء الفاتورة
 // ==========================================
+
+function generateInvoicePDF(name, address, phone, deliveryText, cartItems, finalTotal) {
+    let tableRows = '';
+    cartItems.forEach((item, index) => {
+        tableRows += `
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">${index + 1}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.name}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.price * item.quantity} شيكل</td>
+            </tr>
+        `;
+    });
+
+    const invoiceHTML = `
+        <div style="padding: 20px; font-family: 'Tahoma', 'Arial', sans-serif; direction: rtl; text-align: right; background-color: #fff; color: #000;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color: #b8860b; margin: 0;">متجر شهد وبركة</h2>
+                <h3 style="color: #555; margin: 5px 0;">فاتورة مشتريات</h3>
+            </div>
+            <hr style="border: 1px solid #b8860b; margin-bottom: 20px;">
+            <div style="margin-bottom: 20px; line-height: 1.6;">
+                <p style="margin: 5px 0;"><strong>الاسم:</strong> ${name}</p>
+                <p style="margin: 5px 0;"><strong>الموقع/المدينة:</strong> ${address}</p>
+                <p style="margin: 5px 0;"><strong>رقم التواصل:</strong> ${phone}</p>
+                <p style="margin: 5px 0;"><strong>طريقة الاستلام:</strong> ${deliveryText || 'استلام شخصي'}</p>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px;">
+                <thead style="background-color: #f9f9f9;">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">#</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">الصنف</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">الكمية</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">الإجمالي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>
+            <div style="text-align: left; background-color: #fdfaf1; padding: 15px; border-radius: 5px; border: 1px solid #e0d5b0;">
+                <h3 style="margin: 0; color: #333;">المبلغ الإجمالي: <span style="color: #b8860b;">${finalTotal} شيكل</span></h3>
+            </div>
+        </div>
+    `;
+
+    const opt = {
+        margin:       10,
+        filename:     'invoice_shahad.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(invoiceHTML).save();
+}
+
 function sendCartToWhatsapp() {
     const name = document.getElementById("user-name").value;
     const address = document.getElementById("user-address").value;
@@ -233,6 +290,9 @@ function sendCartToWhatsapp() {
 
     message += "--------------------------\n";
     message += "*إجمالي المبلغ:* " + finalTotal + " شيكل";
+
+    // Generate Invoice PDF
+    generateInvoicePDF(name, address, phone, deliveryMethodText, cart, finalTotal);
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
