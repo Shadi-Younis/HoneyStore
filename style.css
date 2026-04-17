@@ -494,3 +494,28 @@ footer {
     cursor: not-allowed !important; /* تغيير شكل الماوس لإشارة المنع */
     box-shadow: none;
 }
+
+/* 11. خيارات التوصيل */
+.delivery-options {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.delivery-options label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    font-size: 1rem;
+}
+
+.delivery-options select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #333;
+}

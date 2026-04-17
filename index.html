@@ -74,6 +74,14 @@
             <input type="text" id="user-name" placeholder="الاسم الكامل" required>
             <input type="text" id="user-address" placeholder="الموقع / المدينة" required>
             <input type="tel" id="user-phone" placeholder="رقم التواصل (مثال: 0501234567)" maxlength="10" required>
+
+            <div class="delivery-options">
+                <label for="delivery-method">طريقة الاستلام:</label>
+                <select id="delivery-method" onchange="updateCartUI()">
+                    <option value="pickup">استلام شخصي (مجانًا)</option>
+                    <option value="delivery">توصيل لعنوانك (50 شيكل)</option>
+                </select>
+            </div>
         </div>
 
         <div class="cart-footer">

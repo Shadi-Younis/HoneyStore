@@ -120,13 +120,14 @@ function updateCartUI() {
     const cartItemsList = document.getElementById("cart-items");
     const cartCount = document.getElementById("cart-count");
     const totalPriceElement = document.getElementById("total-price");
+    const deliveryMethod = document.getElementById("delivery-method");
 
     cartItemsList.innerHTML = "";
-    let total = 0;
+    let subtotal = 0;
 
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+        subtotal += itemTotal;
 
         const li = document.createElement("li");
         li.className = "cart-item";
@@ -143,7 +144,15 @@ function updateCartUI() {
         cartItemsList.appendChild(li);
     });
 
-    totalPriceElement.innerText = total;
+    let finalTotal = subtotal;
+    let deliveryText = "";
+
+    if (deliveryMethod && deliveryMethod.value === "delivery" && subtotal > 0) {
+        finalTotal += 50;
+        deliveryText = " (شامل 50 شيكل توصيل)";
+    }
+
+    totalPriceElement.innerText = finalTotal + deliveryText;
     cartCount.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
 }
 
@@ -175,6 +184,7 @@ function sendCartToWhatsapp() {
     const name = document.getElementById("user-name").value;
     const address = document.getElementById("user-address").value;
     const phone = document.getElementById("user-phone").value;
+    const deliveryMethodElement = document.getElementById("delivery-method");
 
     if (cart.length === 0 || !name || !address) {
         alert("يرجى إضافة منتجات للسلة وتعبئة الاسم والعنوان قبل إتمام الطلب.");
@@ -189,23 +199,40 @@ function sendCartToWhatsapp() {
 
     const phoneNumber = "972522344536";
 
+    let deliveryMethodText = "";
+    let isDelivery = false;
+    if (deliveryMethodElement) {
+        deliveryMethodText = deliveryMethodElement.options[deliveryMethodElement.selectedIndex].text;
+        isDelivery = deliveryMethodElement.value === "delivery";
+    }
+
     // تم إزالة الرموز التعبيرية (Emojis) لتجنب ظهور علامات الاستفهام
     let message = "*طلب جديد من متجر شهد وبركة*\n\n";
     message += "*الاسم:* " + name + "\n";
     message += "*الموقع:* " + address + "\n";
     message += "*رقم التواصل:* " + phone + "\n";
+    if (deliveryMethodText) {
+        message += "*طريقة الاستلام:* " + deliveryMethodText + "\n";
+    }
     message += "--------------------------\n";
     message += "*المنتجات:*\n";
 
-    let total = 0;
+    let subtotal = 0;
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+        subtotal += itemTotal;
         message += (index + 1) + ". " + item.name + " (x" + item.quantity + ") - " + itemTotal + " شيكل\n";
     });
 
+    let finalTotal = subtotal;
+    if (isDelivery && subtotal > 0) {
+        finalTotal += 50;
+        message += "--------------------------\n";
+        message += "*رسوم التوصيل:* 50 شيكل\n";
+    }
+
     message += "--------------------------\n";
-    message += "*إجمالي المبلغ:* " + total + " شيكل";
+    message += "*إجمالي المبلغ:* " + finalTotal + " شيكل";
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
