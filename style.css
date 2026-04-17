@@ -34,6 +34,14 @@ nav {
     position: relative;
 }
 
+/* زر المنيو مخفي في الحاسوب */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #b8860b;
+}
+
 /* القائمة في الجهة اليمنى */
 nav ul {
     display: flex;
@@ -50,7 +58,7 @@ nav ul li a {
     font-weight: 700;
     font-size: 1.2rem;
     transition: 0.3s;
-    cursor: pointer; /* جعل الماوس يد */
+    cursor: pointer;
 }
 
 nav ul li a:hover {
@@ -70,7 +78,7 @@ nav ul li a:hover {
 
 /* سلة المشتريات في أقصى اليسار */
 .cart-icon {
-    cursor: pointer; /* جعل الماوس يد */
+    cursor: pointer;
     font-size: 1.6rem;
     position: relative;
     background: #fdfaf1;
@@ -151,6 +159,11 @@ nav ul li a:hover {
     transition: 0.3s;
 }
 
+.filter-section button.active, .filter-section button:hover {
+    background-color: #b8860b !important;
+    color: white !important;
+}
+
 /* 5. معرض المنتجات */
 .container {
     padding: 20px 5% 50px;
@@ -206,7 +219,9 @@ nav ul li a:hover {
     transition: 0.3s;
 }
 
-/* 6. سلة المشتريات (Sidebar) */
+.whatsapp-btn:hover { background-color: #128c7e; }
+
+/* 6. سلة المشتريات (Sidebar) وتنسيقات الأزرار الجديدة */
 .cart-sidebar {
     display: none;
     position: fixed;
@@ -222,9 +237,61 @@ nav ul li a:hover {
     animation: slideIn 0.4s ease-out;
 }
 
-@keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    direction: rtl;
+}
+
+/* حاوية أزرار الكمية */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* تنسيق موحد لأزرار الزيادة والنقصان */
+.qty-btn {
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    line-height: 1;
+}
+
+/* زر تقليل الكمية (أحمر) */
+.delete-btn { background-color: #ff4d4d; }
+.delete-btn:hover { background-color: #cc0000; transform: scale(1.1); }
+
+/* زر زيادة الكمية (أخضر) */
+.add-btn { background-color: #25d366; }
+.add-btn:hover { background-color: #128c7e; transform: scale(1.1); }
+
+/* الرقم بين الزرين */
+.qty-number {
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* اسم المنتج وسعره */
+.item-info {
+    flex: 1;
+    text-align: right;
+    margin-right: 15px;
+    font-size: 1rem;
 }
 
 /* 7. بيانات الزبون داخل السلة */
@@ -269,53 +336,49 @@ nav ul li a:hover {
     border: 2px solid #b8860b;
 }
 
-/* إصلاح زر الإغلاق (X) */
 .close-btn {
     position: absolute;
     top: 10px;
     left: 15px;
     font-size: 28px;
-    cursor: pointer; /* الماوس يصير يد */
+    cursor: pointer;
     color: #b8860b;
     font-weight: bold;
     transition: 0.3s;
-    user-select: none; /* منع تحديد النص */
+    user-select: none;
 }
 
 .close-btn:hover {
     color: #ff4d4d;
 }
 
-/* زر المنيو مخفي في الحاسوب */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #b8860b;
-}
-
+/* 9. الموبايل (التجاوب الموحد) */
 @media (max-width: 768px) {
+    nav {
+        padding: 10px;
+    }
+
     .menu-toggle {
-        display: block; /* إظهار أيقونة الهامبورغر */
-        order: 1; /* وضعها في اليمين */
+        display: block;
+        order: 1;
     }
 
     .logo {
-        order: 2; /* وضع اللوجو في المنتصف */
+        order: 2;
         font-size: 1.3rem !important;
         position: static !important;
         transform: none !important;
     }
 
     .cart-icon {
-        order: 3; /* وضع السلة في اليسار */
+        order: 3;
     }
 
     nav ul {
-        display: none; /* مخفي افتراضياً */
+        display: none;
         flex-direction: column;
         position: absolute;
-        top: 100%; /* تظهر تحت الهيدر مباشرة */
+        top: 100%;
         left: 0;
         width: 100%;
         background: white;
@@ -324,11 +387,55 @@ nav ul li a:hover {
         z-index: 2000;
     }
 
+    /* كلاس التفعيل الخاص بالجافا سكريبت لفتح المنيو */
+    nav ul.active {
+        display: flex !important;
+    }
+
     nav ul li {
         margin: 15px 0;
         text-align: center;
         width: 100%;
     }
+
+    .hero h2 {
+        font-size: 1.4rem !important;
+        line-height: 1.6;
+        padding: 0 15px;
+    }
+
+    .hero p {
+        font-size: 1rem !important;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+        gap: 15px !important;
+        padding: 10px;
+    }
+
+    .product-item img {
+        height: 180px !important;
+    }
+
+    .product-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .cart-sidebar {
+        width: 100% !important;
+    }
+
+    .modal-content {
+        width: 95% !important;
+        padding: 20px !important;
+    }
+}
+
+/* 10. الحركات والأنيميشن */
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }
 
 @keyframes fadeIn {
@@ -346,106 +453,4 @@ footer {
     color: white;
     padding: 30px;
     text-align: center;
-}
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    direction: rtl; /* لضمان الترتيب العربي الصحيح */
-}
-
-.cart-item button {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 5px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.cart-item button:hover {
-    background: #cc0000;
-}
-
-.delete-btn {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1.2rem;
-    line-height: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s;
-}
-
-.delete-btn:hover {
-    background-color: #cc0000;
-    transform: scale(1.1);
-}
-/* تنسيقات خاصة للموبايل (شاشات أصغر من 768px) */
-@media (max-width: 768px) {
-    /* 1. الهيدر: ترتيب اللوجو والسلة */
-    nav {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px;
-    }
-
-    /* تصغير حجم الخط في اللوجو والقائمة */
-    .logo {
-        font-size: 1.2rem !important;
-        position: static !important; /* إلغاء التوسيط المطلق */
-        transform: none !important;
-    }
-
-    nav ul {
-        display: none; /* إخفاء القائمة الطويلة واستبدالها لاحقاً بمنيو */
-    }
-
-    /* 2. قسم الـ Hero: تصغير الآية القرآنية */
-    .hero h2 {
-        font-size: 1.4rem !important;
-        line-height: 1.6;
-        padding: 0 15px;
-    }
-
-    .hero p {
-        font-size: 1rem !important;
-    }
-
-    /* 3. شبكة المنتجات: عرض منتج واحد أو اثنين في السطر */
-    .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
-        gap: 15px !important;
-        padding: 10px;
-    }
-
-    /* تصغير صور المنتجات */
-    .product-item img {
-        height: 180px !important;
-    }
-
-    .product-item h3 {
-        font-size: 1.1rem;
-    }
-
-    /* 4. السلة الجانبية: جعلها تغطي كامل الشاشة */
-    .cart-sidebar {
-        width: 100% !important;
-    }
-
-    /* 5. النافذة المنبثقة (About): تصغير المساحات */
-    .modal-content {
-        width: 95% !important;
-        padding: 20px !important;
-    }
 }
