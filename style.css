@@ -454,3 +454,43 @@ footer {
     padding: 30px;
     text-align: center;
 }
+
+/* =========================================
+   تنسيقات المنتجات غير المتوفرة (Out of Stock)
+   ========================================= */
+
+/* جعل الكرت باهتاً */
+.product-item.out-of-stock {
+    opacity: 0.7;
+    position: relative; /* ضروري لتموضع الشريط الأحمر */
+}
+
+/* تحويل صورة المنتج لأبيض وأسود */
+.product-item.out-of-stock img {
+    filter: grayscale(100%);
+}
+
+/* شريط "نفدت الكمية" في الزاوية */
+.product-item.out-of-stock::before {
+    content: "نفدت الكمية";
+    position: absolute;
+    top: 20px;
+    left: -35px;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(-45deg);
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+/* تنسيق الزر المعطل */
+.whatsapp-btn.disabled-btn {
+    background-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed !important; /* تغيير شكل الماوس لإشارة المنع */
+    box-shadow: none;
+}

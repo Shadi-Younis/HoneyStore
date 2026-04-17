@@ -1,4 +1,78 @@
 // ==========================================
+// 1. بيانات المنتجات (Data-driven OOP)
+// ==========================================
+
+class Product {
+    constructor(name, title, price, category, image, desc, inStock = true) {
+        this.name = name;
+        this.title = title || name;
+        this.price = price;
+        this.category = category;
+        this.image = image;
+        this.desc = desc;
+        this.inStock = inStock;
+    }
+
+    render() {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = `product-item ${this.category} ${this.inStock ? '' : 'out-of-stock'}`.trim();
+
+        let buttonHTML = "";
+        if (this.inStock) {
+            buttonHTML = `<button class="whatsapp-btn" onclick="addToCart('${this.name}', ${this.price})">اضف لسلة المشتريات</button>`;
+        } else {
+            buttonHTML = `<button class="whatsapp-btn disabled-btn" disabled>غير متوفر حالياً</button>`;
+        }
+
+        itemDiv.innerHTML = `
+            <img src="${this.image}" alt="${this.name}">
+            <h3>${this.title}</h3>
+            <p>${this.desc}</p>
+            <span class="price">${this.price} شيكل</span>
+            ${buttonHTML}
+        `;
+        return itemDiv;
+    }
+}
+
+class Store {
+    constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        this.products = [];
+    }
+
+    addProduct(product) {
+        this.products.push(product);
+    }
+
+    renderAll() {
+        if (!this.container) return;
+        this.container.innerHTML = "";
+        this.products.forEach(product => {
+            this.container.appendChild(product.render());
+        });
+    }
+}
+
+const myStore = new Store("products-grid");
+
+myStore.addProduct(new Product('عسل زهور برية', null, 80, 'honey', 'images/عسل-ازهار-برية.jpeg', 'طبيعي مستخلص من رحيق أزهار البرية المتنوعة.',false));
+myStore.addProduct(new Product('عسل كينا', 'عسل كينا فاخر', 90, 'honey', 'images/عسل-كينا.jpeg', 'يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.',false));
+myStore.addProduct(new Product('عسل سدر', 'عسل سدر فاخر', 150, 'honey', 'images/عسل-سدر.jpeg', 'من أجود أنواع العسل، يتميز برائحة ذكية وطعم أصيل وفوائد علاجية مذهلة.'));
+myStore.addProduct(new Product('حبيبات اللقاح', null, 50, 'honey', 'images/حبيبات اللقاح.jpeg', 'غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.'));
+myStore.addProduct(new Product('عسل مكسرات', null, 50, 'honey', 'images/عسل-مكسرات.jpeg', 'مزيج رائع من العسل الطبيعي والمكسرات المحمصة.',));
+myStore.addProduct(new Product('رهايف تمر', null, 70, 'dates', 'images/رهايف-تمر.jpeg', 'حبة كبيرة، مذاق غني، فرز أول من أجود المزارع.',));
+myStore.addProduct(new Product('تمرية بالقمح الأبيض', null, 60, 'dates', 'images/تمرية-بالقمح-الابيض.jpeg', 'تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.'));
+myStore.addProduct(new Product('تمريتي', null, 60, 'dates', 'images/تمريتي.jpeg', 'تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.'));
+myStore.addProduct(new Product('تمرية بالقمح الأسمر', null, 60, 'dates', 'images/تمرية-بالقمح-الآسمر.jpeg', 'خيار صحي غني بالألياف مع طعم التمر الأصيل.'));
+myStore.addProduct(new Product('سمسم بالطحينة', null, 60, 'dates', 'images/سمسم-بالطحينة.jpeg', 'حلى طبيعي يجمع بين فوائد السمسم والطحينة الفاخرة.'));
+
+window.addEventListener('load', () => {
+    myStore.renderAll();
+    filterSelection('all');
+});
+
+// ==========================================
 // 1. إدارة فلترة المنتجات (الأقسام)
 // ==========================================
 function filterSelection(category) {
