@@ -103,7 +103,7 @@ nav ul li a:hover {
 /* 3. قسم الترحيب (Hero Section) */
 .hero {
     height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/backgorund_honey.jpg');
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/backgorund_honey.webp');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -175,6 +175,13 @@ nav ul li a:hover {
     gap: 30px;
 }
 
+.herbs-disclaimer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 25px;
+}
+
 .product-item {
     background: white;
     border-radius: 15px;
@@ -235,6 +242,11 @@ nav ul li a:hover {
     padding: 25px;
     overflow-y: auto;
     animation: slideIn 0.4s ease-out;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
 }
 
 .cart-item {

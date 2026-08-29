@@ -2,6 +2,12 @@
 // 1. بيانات المنتجات (Data-driven OOP)
 // ==========================================
 
+const STORE_CONFIG = {
+    whatsapp: "972522344536",
+    displayPhone: "0522344536",
+    deliveryFee: 50
+};
+
 class Product {
     constructor(name, title, price, category, image, desc, inStock = true) {
         this.name = name;
@@ -25,7 +31,7 @@ class Product {
         }
 
         itemDiv.innerHTML = `
-            <img src="${this.image}" alt="${this.name}">
+            <img src="${this.image}" alt="${this.name}" loading="lazy" decoding="async">
             <h3>${this.title}</h3>
             <p>${this.desc}</p>
             <span class="price">${this.price} شيكل</span>
@@ -56,20 +62,29 @@ class Store {
 
 const myStore = new Store("products-grid");
 
-myStore.addProduct(new Product('عسل زهور برية', null, 80, 'honey', 'images/عسل-ازهار-برية.jpeg', 'طبيعي مستخلص من رحيق أزهار البرية المتنوعة.',false));
-myStore.addProduct(new Product('عسل كينا', 'عسل كينا فاخر', 90, 'honey', 'images/عسل-كينا.jpeg', 'يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.',false));
-myStore.addProduct(new Product('عسل سدر', 'عسل سدر فاخر', 150, 'honey', 'images/عسل-سدر.jpeg', 'من أجود أنواع العسل، يتميز برائحة ذكية وطعم أصيل وفوائد علاجية مذهلة.'));
-myStore.addProduct(new Product('حبيبات اللقاح', null, 50, 'honey', 'images/حبيبات اللقاح.jpeg', 'غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.'));
-myStore.addProduct(new Product('عسل مكسرات', null, 50, 'honey', 'images/عسل-مكسرات.jpeg', 'مزيج رائع من العسل الطبيعي والمكسرات المحمصة.',));
-myStore.addProduct(new Product('رهايف تمر', null, 70, 'dates', 'images/رهايف-تمر.jpeg', 'حبة كبيرة، مذاق غني، فرز أول من أجود المزارع.',));
-myStore.addProduct(new Product('تمرية بالقمح الأبيض', null, 60, 'dates', 'images/تمرية-بالقمح-الابيض.jpeg', 'تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.'));
-myStore.addProduct(new Product('تمريتي', null, 60, 'dates', 'images/تمريتي.jpeg', 'تمر طبيعي بجودة عالية، يتميز بقوام رائع وحلاوة معتدلة.'));
-myStore.addProduct(new Product('تمرية بالقمح الأسمر', null, 60, 'dates', 'images/تمرية-بالقمح-الآسمر.jpeg', 'خيار صحي غني بالألياف مع طعم التمر الأصيل.'));
-myStore.addProduct(new Product('سمسم بالطحينة', null, 60, 'dates', 'images/سمسم-بالطحينة.jpeg', 'حلى طبيعي يجمع بين فوائد السمسم والطحينة الفاخرة.'));
+myStore.addProduct(new Product('عسل زهور برية', null, 80, 'honey', 'images/wildflower-honey.webp', 'طبيعي مستخلص من رحيق أزهار البرية المتنوعة.',false));
+myStore.addProduct(new Product('عسل كينا', 'عسل كينا فاخر', 90, 'honey', 'images/eucalyptus-honey.webp', 'يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.',false));
+myStore.addProduct(new Product('عسل سدر', 'عسل سدر فاخر', 150, 'honey', 'images/sidr-honey.webp', 'من أجود أنواع العسل، يتميز برائحة ذكية وطعم أصيل وفوائد علاجية مذهلة.'));
+myStore.addProduct(new Product('حبيبات اللقاح', null, 50, 'honey', 'images/bee-pollen.webp', 'غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.'));
+myStore.addProduct(new Product('عسل مكسرات', null, 50, 'honey', 'images/honey-nuts.webp', 'مزيج رائع من العسل الطبيعي والمكسرات المحمصة.',));
+myStore.addProduct(new Product('كبسولات البروبوليس (عكبر النحل)', null, 90, 'herbs', 'images/propolis-capsules.webp', 'كبسولات طبيعية من عكبر النحل الخام، غنية بمضادات الأكسدة، يُستخدم تقليدياً كمكمل غذائي يومي.'));
+myStore.addProduct(new Product('كبسولات الزنجبيل والكركم', null, 70, 'herbs', 'images/ginger-turmeric-capsules.webp', 'مزيج مركّز من مسحوق الزنجبيل والكركم الطبيعي، غني بالمركبات النباتية، يُستخدم تقليدياً كمكمل غذائي يومي.'));
+myStore.addProduct(new Product('زيت حبة البركة المعصور على البارد', null, 65, 'herbs', 'images/black-seed-oil.webp', 'زيت نقي 100% مستخلص من بذور حبة البركة بطريقة العصر البارد، غني بالأحماض الدهنية الطبيعية.'));
+myStore.addProduct(new Product('خلطة الأعشاب الجبلية', null, 55, 'herbs', 'images/mountain-herbs-blend.webp', 'خلطة من أعشاب جبلية طبيعية مجففة ومختارة بعناية، تُحضّر تقليدياً كمشروب دافئ.'));
+myStore.addProduct(new Product('كبسولات الميرمية والبابونج', null, 60, 'herbs', 'images/sage-chamomile-capsules.webp', 'كبسولات من مستخلص الميرمية والبابونج الطبيعي، تُستخدم تقليدياً كمكمل عشبي يومي.'));
+myStore.addProduct(new Product('شراب الأعشاب بالعسل', null, 80, 'herbs', 'images/herbal-honey-syrup.webp', 'شراب طبيعي يجمع بين خلاصة الأعشاب المختارة وعسل النحل الأصلي، غني بالمكونات الطبيعية ويُستخدم تقليدياً كمشروب دافئ.'));
 
 window.addEventListener('load', () => {
     myStore.renderAll();
     filterSelection('all');
+    loadCart();
+    updateCartUI();
+
+    const footerPhone = document.getElementById("footer-phone");
+    if (footerPhone) footerPhone.textContent = STORE_CONFIG.displayPhone;
+
+    const deliveryFeeOption = document.getElementById("delivery-fee-option");
+    if (deliveryFeeOption) deliveryFeeOption.textContent = `توصيل لعنوانك (${STORE_CONFIG.deliveryFee} شيكل)`;
 });
 
 // ==========================================
@@ -96,12 +111,37 @@ function filterSelection(category) {
             btn.classList.add("active");
         }
     });
+
+    // إظهار تنويه الأعشاب فقط عند تفعيل قسم الطب البديل
+    const herbsDisclaimer = document.getElementById("herbs-disclaimer");
+    if (herbsDisclaimer) {
+        herbsDisclaimer.style.display = (category === "herbs") ? "block" : "none";
+    }
 }
 
 // ==========================================
 // 2. إدارة سلة المشتريات (الإضافة، الحذف، التحديث)
 // ==========================================
 let cart = []; // مصفوفة السلة
+const CART_STORAGE_KEY = "honeyStoreCart";
+
+function saveCart() {
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+        // تجاهل أخطاء التخزين (مثال: وضع التصفح الخاص أو تجاوز السعة)
+    }
+}
+
+function loadCart() {
+    try {
+        const stored = localStorage.getItem(CART_STORAGE_KEY);
+        const parsed = stored ? JSON.parse(stored) : [];
+        cart = Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+        cart = [];
+    }
+}
 
 function addToCart(name, price) {
     const itemPrice = Number(price); // التأكد من تحويل السعر لرقم
@@ -148,12 +188,14 @@ function updateCartUI() {
     let deliveryText = "";
 
     if (deliveryMethod && deliveryMethod.value === "delivery" && subtotal > 0) {
-        finalTotal += 50;
-        deliveryText = " (شامل 50 شيكل توصيل)";
+        finalTotal += STORE_CONFIG.deliveryFee;
+        deliveryText = ` (شامل ${STORE_CONFIG.deliveryFee} شيكل توصيل)`;
     }
 
     totalPriceElement.innerText = finalTotal + deliveryText;
     cartCount.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+    saveCart();
 }
 
 // دالة زيادة الكمية من داخل السلة
@@ -254,7 +296,7 @@ function sendCartToWhatsapp() {
         return;
     }
 
-    const phoneNumber = "972522344536";
+    const phoneNumber = STORE_CONFIG.whatsapp;
 
     let deliveryMethodText = "";
     let isDelivery = false;
@@ -283,9 +325,9 @@ function sendCartToWhatsapp() {
 
     let finalTotal = subtotal;
     if (isDelivery && subtotal > 0) {
-        finalTotal += 50;
+        finalTotal += STORE_CONFIG.deliveryFee;
         message += "--------------------------\n";
-        message += "*رسوم التوصيل:* 50 شيكل\n";
+        message += "*رسوم التوصيل:* " + STORE_CONFIG.deliveryFee + " شيكل\n";
     }
 
     message += "--------------------------\n";
@@ -297,7 +339,12 @@ function sendCartToWhatsapp() {
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
 
-    window.open(whatsappURL, '_blank');
+    const win = window.open(whatsappURL, '_blank');
+    if (win) {
+        cart = [];
+        saveCart();
+        updateCartUI();
+    }
 }
 
 // ==========================================
@@ -311,13 +358,29 @@ function closeAbout() {
     document.getElementById("aboutModal").style.display = "none";
 }
 
-// إغلاق نافذة "من نحن" عند الضغط خارجها
-window.onclick = function(event) {
-    let modal = document.getElementById("aboutModal");
-    if (event.target == modal) {
-        modal.style.display = "none";
+// إغلاق النوافذ المنبثقة (من نحن وسلة المشتريات) عند الضغط خارجها
+document.addEventListener('click', function(event) {
+    const aboutModal = document.getElementById("aboutModal");
+    if (aboutModal && event.target == aboutModal) {
+        aboutModal.style.display = "none";
     }
-}
+
+    const cartModal = document.getElementById("cartModal");
+    if (cartModal && cartModal.style.display === "block"
+        && !cartModal.contains(event.target)
+        && !event.target.closest('.cart-icon')) {
+        cartModal.style.display = "none";
+    }
+});
+
+// إغلاق النوافذ المنبثقة عند الضغط على مفتاح Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeAbout();
+        const cartModal = document.getElementById("cartModal");
+        if (cartModal) cartModal.style.display = "none";
+    }
+});
 
 // تبديل حالة المنيو في الموبايل
 function toggleMenu() {
