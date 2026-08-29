@@ -366,10 +366,12 @@ document.addEventListener('click', function(event) {
     }
 
     const cartModal = document.getElementById("cartModal");
-    if (cartModal && cartModal.style.display === "block"
-        && !cartModal.contains(event.target)
-        && !event.target.closest('.cart-icon')) {
-        cartModal.style.display = "none";
+    const cartIcon = document.querySelector(".cart-icon");
+    if (cartModal && cartModal.style.display === "block") {
+        const path = event.composedPath();
+        if (!path.includes(cartModal) && !path.includes(cartIcon)) {
+            cartModal.style.display = "none";
+        }
     }
 });
 
