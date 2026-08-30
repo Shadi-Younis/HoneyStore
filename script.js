@@ -278,14 +278,14 @@ function generateInvoicePDF(name, address, phone, deliveryText, cartItems, final
 
     const holder = document.createElement('div');
     holder.innerHTML = invoiceHTML;
-    holder.style.position = 'fixed';
-    holder.style.left = '-10000px';
+    holder.style.position = 'absolute';
+    holder.style.left = '-9999px';
     holder.style.top = '0';
     holder.style.width = '210mm';
     holder.style.background = '#fff';
     document.body.appendChild(holder);
 
-    html2pdf().set(opt).from(holder).save().then(() => {
+    return html2pdf().set(opt).from(holder).save().then(() => {
         document.body.removeChild(holder);
     }).catch(() => {
         if (holder.parentNode) document.body.removeChild(holder);
@@ -346,18 +346,18 @@ function sendCartToWhatsapp() {
     message += "--------------------------\n";
     message += "*إجمالي المبلغ:* " + finalTotal + " شيكل";
 
-    // Generate Invoice PDF
-    generateInvoicePDF(name, address, phone, deliveryMethodText, cart, finalTotal);
-
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
 
-    const win = window.open(whatsappURL, '_blank');
-    if (win) {
-        cart = [];
-        saveCart();
-        updateCartUI();
-    }
+    // Generate Invoice PDF, then open WhatsApp only after it finishes
+    generateInvoicePDF(name, address, phone, deliveryMethodText, cart, finalTotal).then(() => {
+        const win = window.open(whatsappURL, '_blank');
+        if (win) {
+            cart = [];
+            saveCart();
+            updateCartUI();
+        }
+    });
 }
 
 // ==========================================
