@@ -272,11 +272,24 @@ function generateInvoicePDF(name, address, phone, deliveryText, cartItems, final
         margin:       10,
         filename:     'invoice_shahad.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
+        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(invoiceHTML).save();
+    const holder = document.createElement('div');
+    holder.innerHTML = invoiceHTML;
+    holder.style.position = 'fixed';
+    holder.style.left = '-10000px';
+    holder.style.top = '0';
+    holder.style.width = '210mm';
+    holder.style.background = '#fff';
+    document.body.appendChild(holder);
+
+    html2pdf().set(opt).from(holder).save().then(() => {
+        document.body.removeChild(holder);
+    }).catch(() => {
+        if (holder.parentNode) document.body.removeChild(holder);
+    });
 }
 
 function sendCartToWhatsapp() {
