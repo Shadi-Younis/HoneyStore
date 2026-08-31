@@ -161,6 +161,13 @@ function updateCartUI() {
     const cartCount = document.getElementById("cart-count");
     const totalPriceElement = document.getElementById("total-price");
     const deliveryMethod = document.getElementById("delivery-method");
+    const cartEmpty = document.getElementById("cart-empty");
+    const userInfo = document.querySelector(".user-info");
+    const cartFooter = document.querySelector(".cart-footer");
+
+    if (cartEmpty) cartEmpty.style.display = (cart.length === 0) ? "block" : "none";
+    if (userInfo) userInfo.style.display = (cart.length === 0) ? "none" : "block";
+    if (cartFooter) cartFooter.style.display = (cart.length === 0) ? "none" : "block";
 
     cartItemsList.innerHTML = "";
     let subtotal = 0;
