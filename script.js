@@ -268,57 +268,17 @@ function generateInvoicePDF(name, address, phone, deliveryText, cartItems, final
         </div>
     `;
 
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'absolute';
-    iframe.style.width = '0';
-    iframe.style.height = '0';
-    iframe.style.border = '0';
-    iframe.style.visibility = 'hidden';
-    document.body.appendChild(iframe);
-
-    const doc = iframe.contentDocument;
-    doc.open();
-    doc.write(`
-        <!DOCTYPE html>
-        <html lang="ar" dir="rtl">
-        <head>
-            <meta charset="UTF-8">
-            <title>فاتورة مشتريات - متجر شهد وبركة</title>
-            <style>
-                body { margin: 0; padding: 0; font-family: 'Tahoma', 'Arial', sans-serif; direction: rtl; text-align: right; background-color: #fff; color: #000; }
-                .invoice-container { padding: 20px; }
-                .invoice-header { text-align: center; margin-bottom: 20px; }
-                .invoice-header h2 { color: #b8860b; margin: 0; }
-                .invoice-header h3 { color: #555; margin: 5px 0; }
-                .invoice-divider { border: 1px solid #b8860b; margin-bottom: 20px; }
-                .invoice-info { margin-bottom: 20px; line-height: 1.6; }
-                .invoice-info p { margin: 5px 0; }
-                .invoice-table { width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px; }
-                .invoice-table thead { background-color: #f9f9f9; }
-                .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 10px; }
-                .invoice-table td { padding: 8px; }
-                .invoice-table th { font-weight: bold; }
-                .invoice-total { text-align: left; background-color: #fdfaf1; padding: 15px; border-radius: 5px; border: 1px solid #e0d5b0; }
-                .invoice-total h3 { margin: 0; color: #333; }
-                .invoice-total .highlight { color: #b8860b; }
-            </style>
-        </head>
-        <body>
-            ${invoiceHTML}
-        </body>
-        </html>
-    `);
-    doc.close();
+    const printArea = document.getElementById('invoice-print-area');
+    printArea.innerHTML = invoiceHTML;
 
     function cleanup() {
-        if (iframe.parentNode) document.body.removeChild(iframe);
+        printArea.innerHTML = '';
     }
 
-    iframe.contentWindow.addEventListener('afterprint', cleanup);
-    setTimeout(cleanup, 1000);
+    window.addEventListener('afterprint', cleanup, { once: true });
+    setTimeout(cleanup, 30000);
 
-    iframe.contentWindow.focus();
-    iframe.contentWindow.print();
+    window.print();
 }
 
 function sendCartToWhatsapp() {
