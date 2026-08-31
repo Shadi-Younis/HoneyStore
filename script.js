@@ -349,15 +349,49 @@ function sendCartToWhatsapp() {
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
 
-    // Generate Invoice PDF, then open WhatsApp only after it finishes
-    generateInvoicePDF(name, address, phone, deliveryMethodText, cart, finalTotal).then(() => {
-        const win = window.open(whatsappURL, '_blank');
-        if (win) {
-            cart = [];
-            saveCart();
-            updateCartUI();
-        }
+    const win = window.open(whatsappURL, '_blank');
+    if (win) {
+        cart = [];
+        saveCart();
+        updateCartUI();
+    }
+}
+
+function downloadInvoice() {
+    const name = document.getElementById("user-name").value;
+    const address = document.getElementById("user-address").value;
+    const phone = document.getElementById("user-phone").value;
+    const deliveryMethodElement = document.getElementById("delivery-method");
+
+    if (cart.length === 0 || !name || !address) {
+        alert("يرجى إضافة منتجات للسلة وتعبئة الاسم والعنوان قبل تحميل الفاتورة.");
+        return;
+    }
+
+    const phoneRegex = /^0\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+        alert("يرجى إدخال رقم هاتف صحيح (يجب أن يتكون من 10 أرقام ويبدأ بالرقم 0).");
+        return;
+    }
+
+    let deliveryMethodText = "";
+    let isDelivery = false;
+    if (deliveryMethodElement) {
+        deliveryMethodText = deliveryMethodElement.options[deliveryMethodElement.selectedIndex].text;
+        isDelivery = deliveryMethodElement.value === "delivery";
+    }
+
+    let subtotal = 0;
+    cart.forEach(item => {
+        subtotal += item.price * item.quantity;
     });
+
+    let finalTotal = subtotal;
+    if (isDelivery && subtotal > 0) {
+        finalTotal += STORE_CONFIG.deliveryFee;
+    }
+
+    generateInvoicePDF(name, address, phone, deliveryMethodText, cart, finalTotal);
 }
 
 // ==========================================
