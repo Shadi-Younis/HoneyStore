@@ -146,8 +146,16 @@ function loadCart() {
 }
 
 function shareProduct(name, price) {
-    const text = `${name} - ${price} شيكل\nمن متجر شهد وبركة\n${STORE_CONFIG.siteUrl}`;
-    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    const text = `${name} - ${price} شيكل\nمن متجر شهد وبركة`;
+    const url = STORE_CONFIG.siteUrl;
+
+    if (navigator.share) {
+        navigator.share({ title: name, text: text, url: url })
+            .catch(() => {});
+    } else {
+        const msg = encodeURIComponent(text + '\n' + url);
+        window.open('https://wa.me/?text=' + msg, '_blank');
+    }
 }
 
 function addToCart(name, price) {
