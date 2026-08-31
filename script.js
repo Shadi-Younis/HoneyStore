@@ -228,68 +228,97 @@ function generateInvoicePDF(name, address, phone, deliveryText, cartItems, final
     cartItems.forEach((item, index) => {
         tableRows += `
             <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;">${index + 1}</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.name}</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.price * item.quantity} شيكل</td>
+                <td>${index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.price * item.quantity} شيكل</td>
             </tr>
         `;
     });
 
     const invoiceHTML = `
-        <div style="padding: 20px; font-family: 'Tahoma', 'Arial', sans-serif; direction: rtl; text-align: right; background-color: #fff; color: #000;">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <h2 style="color: #b8860b; margin: 0;">متجر شهد وبركة</h2>
-                <h3 style="color: #555; margin: 5px 0;">فاتورة مشتريات</h3>
+        <div class="invoice-container">
+            <div class="invoice-header">
+                <h2>متجر شهد وبركة</h2>
+                <h3>فاتورة مشتريات</h3>
             </div>
-            <hr style="border: 1px solid #b8860b; margin-bottom: 20px;">
-            <div style="margin-bottom: 20px; line-height: 1.6;">
-                <p style="margin: 5px 0;"><strong>الاسم:</strong> ${name}</p>
-                <p style="margin: 5px 0;"><strong>الموقع/المدينة:</strong> ${address}</p>
-                <p style="margin: 5px 0;"><strong>رقم التواصل:</strong> ${phone}</p>
-                <p style="margin: 5px 0;"><strong>طريقة الاستلام:</strong> ${deliveryText || 'استلام شخصي'}</p>
+            <hr class="invoice-divider">
+            <div class="invoice-info">
+                <p><strong>الاسم:</strong> ${name}</p>
+                <p><strong>الموقع/المدينة:</strong> ${address}</p>
+                <p><strong>رقم التواصل:</strong> ${phone}</p>
+                <p><strong>طريقة الاستلام:</strong> ${deliveryText || 'استلام شخصي'}</p>
             </div>
-            <table style="width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px;">
-                <thead style="background-color: #f9f9f9;">
+            <table class="invoice-table">
+                <thead>
                     <tr>
-                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">#</th>
-                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">الصنف</th>
-                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">الكمية</th>
-                        <th style="border: 1px solid #ddd; padding: 10px; font-weight: bold;">الإجمالي</th>
+                        <th>#</th>
+                        <th>الصنف</th>
+                        <th>الكمية</th>
+                        <th>الإجمالي</th>
                     </tr>
                 </thead>
                 <tbody>
                     ${tableRows}
                 </tbody>
             </table>
-            <div style="text-align: left; background-color: #fdfaf1; padding: 15px; border-radius: 5px; border: 1px solid #e0d5b0;">
-                <h3 style="margin: 0; color: #333;">المبلغ الإجمالي: <span style="color: #b8860b;">${finalTotal} شيكل</span></h3>
+            <div class="invoice-total">
+                <h3>المبلغ الإجمالي: <span class="highlight">${finalTotal} شيكل</span></h3>
             </div>
         </div>
     `;
 
-    const opt = {
-        margin:       10,
-        filename:     'invoice_shahad.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'absolute';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    iframe.style.visibility = 'hidden';
+    document.body.appendChild(iframe);
 
-    const holder = document.createElement('div');
-    holder.innerHTML = invoiceHTML;
-    holder.style.position = 'absolute';
-    holder.style.left = '-9999px';
-    holder.style.top = '0';
-    holder.style.width = '210mm';
-    holder.style.background = '#fff';
-    document.body.appendChild(holder);
+    const doc = iframe.contentDocument;
+    doc.open();
+    doc.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <title>فاتورة مشتريات - متجر شهد وبركة</title>
+            <style>
+                body { margin: 0; padding: 0; font-family: 'Tahoma', 'Arial', sans-serif; direction: rtl; text-align: right; background-color: #fff; color: #000; }
+                .invoice-container { padding: 20px; }
+                .invoice-header { text-align: center; margin-bottom: 20px; }
+                .invoice-header h2 { color: #b8860b; margin: 0; }
+                .invoice-header h3 { color: #555; margin: 5px 0; }
+                .invoice-divider { border: 1px solid #b8860b; margin-bottom: 20px; }
+                .invoice-info { margin-bottom: 20px; line-height: 1.6; }
+                .invoice-info p { margin: 5px 0; }
+                .invoice-table { width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px; }
+                .invoice-table thead { background-color: #f9f9f9; }
+                .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 10px; }
+                .invoice-table td { padding: 8px; }
+                .invoice-table th { font-weight: bold; }
+                .invoice-total { text-align: left; background-color: #fdfaf1; padding: 15px; border-radius: 5px; border: 1px solid #e0d5b0; }
+                .invoice-total h3 { margin: 0; color: #333; }
+                .invoice-total .highlight { color: #b8860b; }
+            </style>
+        </head>
+        <body>
+            ${invoiceHTML}
+        </body>
+        </html>
+    `);
+    doc.close();
 
-    return html2pdf().set(opt).from(holder).save().then(() => {
-        document.body.removeChild(holder);
-    }).catch(() => {
-        if (holder.parentNode) document.body.removeChild(holder);
-    });
+    function cleanup() {
+        if (iframe.parentNode) document.body.removeChild(iframe);
+    }
+
+    iframe.contentWindow.addEventListener('afterprint', cleanup);
+    setTimeout(cleanup, 1000);
+
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
 }
 
 function sendCartToWhatsapp() {
