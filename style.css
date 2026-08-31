@@ -229,6 +229,20 @@ nav ul li a:hover {
 
 .whatsapp-btn:hover { background-color: #128c7e; }
 
+.share-btn {
+    background-color: transparent;
+    color: #b8860b;
+    border: 1px solid #b8860b;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    transition: 0.3s;
+}
+
+.share-btn:hover { background-color: #b8860b; color: white; }
+
 .invoice-btn {
     background-color: transparent;
     color: #b8860b;
@@ -248,6 +262,15 @@ nav ul li a:hover {
     text-align: center;
     color: #888;
     padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.cart-empty p {
+    font-size: 1.1rem;
 }
 
 .btn-browse {

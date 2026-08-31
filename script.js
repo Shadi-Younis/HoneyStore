@@ -5,7 +5,8 @@
 const STORE_CONFIG = {
     whatsapp: "972522344536",
     displayPhone: "0522344536",
-    deliveryFee: 50
+    deliveryFee: 50,
+    siteUrl: "https://shahd-baraka.vercel.app/"
 };
 
 class Product {
@@ -36,6 +37,7 @@ class Product {
             <p>${this.desc}</p>
             <span class="price">${this.price} شيكل</span>
             ${buttonHTML}
+            <button class="share-btn" onclick="shareProduct('${this.name}', ${this.price})" title="شارك عبر واتساب">🔗 مشاركة</button>
         `;
         return itemDiv;
     }
@@ -141,6 +143,11 @@ function loadCart() {
     } catch (e) {
         cart = [];
     }
+}
+
+function shareProduct(name, price) {
+    const text = `${name} - ${price} شيكل\nمن متجر شهد وبركة\n${STORE_CONFIG.siteUrl}`;
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
 }
 
 function addToCart(name, price) {
