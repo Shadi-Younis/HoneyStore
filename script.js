@@ -153,7 +153,7 @@ function shareProduct(name, price) {
         navigator.share({ title: name, text: text, url: url })
             .catch(() => {});
     } else {
-        const msg = encodeURIComponent(text + '\n' + url);
+        const msg = encodeURIComponent(url + '\n\n' + text);
         window.open('https://wa.me/?text=' + msg, '_blank');
     }
 }
