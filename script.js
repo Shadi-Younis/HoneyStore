@@ -268,17 +268,58 @@ function generateInvoicePDF(name, address, phone, deliveryText, cartItems, final
         </div>
     `;
 
-    const printArea = document.getElementById('invoice-print-area');
-    printArea.innerHTML = invoiceHTML;
-
-    function cleanup() {
-        printArea.innerHTML = '';
+    const w = window.open('', '_blank');
+    if (!w) {
+        alert('يرجى السماح بالنوافذ المنبثقة لعرض الفاتورة');
+        return;
     }
 
-    window.addEventListener('afterprint', cleanup, { once: true });
-    setTimeout(cleanup, 30000);
+    w.document.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <title>فاتورة - متجر شهد وبركة</title>
+            <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+            <style>
+                body { margin: 0; padding: 0; }
+                .invoice-container {
+                    padding: 20px;
+                    font-family: 'Amiri', 'Segoe UI', Tahoma, sans-serif;
+                    direction: rtl;
+                    text-align: right;
+                    background-color: #fff;
+                    color: #000;
+                }
+                .invoice-header { text-align: center; margin-bottom: 20px; }
+                .invoice-header h2 { color: #b8860b; margin: 0; }
+                .invoice-header h3 { color: #555; margin: 5px 0; }
+                .invoice-divider { border: 1px solid #b8860b; margin-bottom: 20px; }
+                .invoice-info { margin-bottom: 20px; line-height: 1.6; }
+                .invoice-info p { margin: 5px 0; }
+                .invoice-table { width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px; }
+                .invoice-table thead { background-color: #f9f9f9; }
+                .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 10px; }
+                .invoice-table td { padding: 8px; }
+                .invoice-table th { font-weight: bold; }
+                .invoice-total { text-align: left; background-color: #fdfaf1; padding: 15px; border-radius: 5px; border: 1px solid #e0d5b0; }
+                .invoice-total h3 { margin: 0; color: #333; }
+                .invoice-total .highlight { color: #b8860b; }
+            </style>
+        </head>
+        <body>
+            ${invoiceHTML}
+        </body>
+        </html>
+    `);
+    w.document.close();
 
-    window.print();
+    if (w.document.readyState === 'complete') {
+        w.focus();
+        w.print();
+    } else {
+        w.onload = function() { w.focus(); w.print(); };
+    }
 }
 
 function sendCartToWhatsapp() {
