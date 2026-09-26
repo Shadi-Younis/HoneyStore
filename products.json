@@ -1,114 +1,114 @@
 {
   "products": [
     {
-      "id": "wildflower-honey",
-      "name": "عسل زهور برية",
-      "description": "طبيعي مستخلص من رحيق أزهار البرية المتنوعة.",
-      "price": 80,
       "image": "images/wildflower-honey.webp",
-      "category": "honey",
-      "subcategory": "",
-      "inStock": false
-    },
-    {
-      "id": "eucalyptus-honey",
-      "name": "عسل كينا فاخر",
-      "description": "يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.",
-      "price": 90,
-      "image": "images/eucalyptus-honey.webp",
-      "category": "honey",
-      "subcategory": "",
-      "inStock": false
-    },
-    {
-      "id": "sidr-honey",
-      "name": "عسل سدر فاخر",
-      "description": "من أجود أنواع العسل، يتميز برائحة ذكية وطعم أصيل وفوائد علاجية مذهلة.",
-      "price": 150,
-      "image": "images/sidr-honey.webp",
-      "category": "honey",
-      "subcategory": "",
-      "inStock": true
-    },
-    {
-      "id": "bee-pollen",
-      "name": "حبيبات اللقاح",
-      "description": "غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.",
-      "price": 50,
-      "image": "images/bee-pollen.webp",
-      "category": "honey",
-      "subcategory": "",
-      "inStock": true
-    },
-    {
-      "id": "honey-nuts",
-      "name": "عسل مكسرات",
-      "description": "مزيج رائع من العسل الطبيعي والمكسرات المحمصة.",
-      "price": 50,
-      "image": "images/honey-nuts.webp",
-      "category": "honey",
-      "subcategory": "",
-      "inStock": true
-    },
-    {
-      "id": "propolis-capsules",
-      "name": "كبسولات البروبوليس (عكبر النحل)",
-      "description": "كبسولات طبيعية من عكبر النحل الخام، غنية بمضادات الأكسدة، يُستخدم تقليدياً كمكمل غذائي يومي.",
-      "price": 90,
-      "image": "images/propolis-capsules.webp",
-      "category": "herbs",
-      "subcategory": "respiratory",
-      "inStock": true
-    },
-    {
-      "id": "ginger-turmeric-capsules",
-      "name": "كبسولات الزنجبيل والكركم",
-      "description": "مزيج مركّز من مسحوق الزنجبيل والكركم الطبيعي، غني بالمركبات النباتية، يُستخدم تقليدياً كمكمل غذائي يومي.",
-      "price": 70,
-      "image": "images/ginger-turmeric-capsules.webp",
-      "category": "herbs",
-      "subcategory": "digestive",
-      "inStock": true
-    },
-    {
-      "id": "black-seed-oil",
-      "name": "زيت حبة البركة المعصور على البارد",
-      "description": "زيت نقي 100% مستخلص من بذور حبة البركة بطريقة العصر البارد، غني بالأحماض الدهنية الطبيعية.",
-      "price": 65,
-      "image": "images/black-seed-oil.webp",
-      "category": "herbs",
-      "subcategory": "respiratory",
-      "inStock": true
-    },
-    {
-      "id": "mountain-herbs-blend",
-      "name": "خلطة الأعشاب الجبلية",
-      "description": "خلطة من أعشاب جبلية طبيعية مجففة ومختارة بعناية، تُحضّر تقليدياً كمشروب دافئ.",
-      "price": 55,
-      "image": "images/mountain-herbs-blend.webp",
-      "category": "herbs",
-      "subcategory": "digestive",
-      "inStock": true
-    },
-    {
-      "id": "sage-chamomile-capsules",
-      "name": "كبسولات الميرمية والبابونج",
-      "description": "كبسولات من مستخلص الميرمية والبابونج الطبيعي، تُستخدم تقليدياً كمكمل عشبي يومي.",
-      "price": 60,
-      "image": "images/sage-chamomile-capsules.webp",
-      "category": "herbs",
-      "subcategory": "digestive",
-      "inStock": true
-    },
-    {
-      "id": "herbal-honey-syrup",
-      "name": "شراب الأعشاب بالعسل",
-      "description": "شراب طبيعي يجمع بين خلاصة الأعشاب المختارة وعسل النحل الأصلي، غني بالمكونات الطبيعية ويُستخدم تقليدياً كمشروب دافئ.",
+      "name": "عسل زهور برية",
       "price": 80,
-      "image": "images/herbal-honey-syrup.webp",
+      "description": "طبيعي مستخلص من رحيق أزهار البرية المتنوعة.",
+      "category": "honey",
+      "subcategory": "",
+      "inStock": true,
+      "id": "wildflower-honey"
+    },
+    {
+      "image": "images/eucalyptus-honey.webp",
+      "name": "عسل كينا فاخر",
+      "price": 90,
+      "description": "يتميز بنكهة قوية وفوائد صحية عديدة للجهاز التنفسي.",
+      "category": "honey",
+      "subcategory": "",
+      "inStock": true,
+      "id": "eucalyptus-honey"
+    },
+    {
+      "image": "images/sidr-honey.webp",
+      "name": "عسل سدر فاخر",
+      "price": 150,
+      "description": "من أجود أنواع العسل، يتميز برائحة ذكية وطعم أصيل وفوائد علاجية مذهلة.",
+      "category": "honey",
+      "subcategory": "",
+      "inStock": true,
+      "id": "sidr-honey"
+    },
+    {
+      "image": "images/bee-pollen.webp",
+      "name": "حبيبات اللقاح",
+      "price": 50,
+      "description": "غذاء ملكي متكامل، غني بالبروتينات والفيتامينات الطبيعية.",
+      "category": "honey",
+      "subcategory": "",
+      "inStock": true,
+      "id": "bee-pollen"
+    },
+    {
+      "image": "images/honey-nuts.webp",
+      "name": "عسل مكسرات",
+      "price": 50,
+      "description": "مزيج رائع من العسل الطبيعي والمكسرات المحمصة.",
+      "category": "honey",
+      "subcategory": "",
+      "inStock": true,
+      "id": "honey-nuts"
+    },
+    {
+      "image": "images/propolis-capsules.webp",
+      "name": "كبسولات البروبوليس (عكبر النحل)",
+      "price": 90,
+      "description": "كبسولات طبيعية من عكبر النحل الخام، غنية بمضادات الأكسدة، يُستخدم تقليدياً كمكمل غذائي يومي.",
       "category": "herbs",
       "subcategory": "respiratory",
-      "inStock": true
+      "inStock": true,
+      "id": "propolis-capsules"
+    },
+    {
+      "image": "images/ginger-turmeric-capsules.webp",
+      "name": "كبسولات الزنجبيل والكركم",
+      "price": 70,
+      "description": "مزيج مركّز من مسحوق الزنجبيل والكركم الطبيعي، غني بالمركبات النباتية، يُستخدم تقليدياً كمكمل غذائي يومي.",
+      "category": "herbs",
+      "subcategory": "digestive",
+      "inStock": true,
+      "id": "ginger-turmeric-capsules"
+    },
+    {
+      "image": "images/black-seed-oil.webp",
+      "name": "زيت حبة البركة المعصور على البارد",
+      "price": 65,
+      "description": "زيت نقي 100% مستخلص من بذور حبة البركة بطريقة العصر البارد، غني بالأحماض الدهنية الطبيعية.",
+      "category": "herbs",
+      "subcategory": "respiratory",
+      "inStock": true,
+      "id": "black-seed-oil"
+    },
+    {
+      "image": "images/mountain-herbs-blend.webp",
+      "name": "خلطة الأعشاب الجبلية",
+      "price": 55,
+      "description": "خلطة من أعشاب جبلية طبيعية مجففة ومختارة بعناية، تُحضّر تقليدياً كمشروب دافئ.",
+      "category": "herbs",
+      "subcategory": "digestive",
+      "inStock": true,
+      "id": "mountain-herbs-blend"
+    },
+    {
+      "image": "images/sage-chamomile-capsules.webp",
+      "name": "كبسولات الميرمية والبابونج",
+      "price": 60,
+      "description": "كبسولات من مستخلص الميرمية والبابونج الطبيعي، تُستخدم تقليدياً كمكمل عشبي يومي.",
+      "category": "herbs",
+      "subcategory": "digestive",
+      "inStock": true,
+      "id": "sage-chamomile-capsules"
+    },
+    {
+      "image": "images/herbal-honey-syrup.webp",
+      "name": "شراب الأعشاب بالعسل",
+      "price": 80,
+      "description": "شراب طبيعي يجمع بين خلاصة الأعشاب المختارة وعسل النحل الأصلي، غني بالمكونات الطبيعية ويُستخدم تقليدياً كمشروب دافئ.",
+      "category": "herbs",
+      "subcategory": "respiratory",
+      "inStock": true,
+      "id": "herbal-honey-syrup"
     }
   ],
   "categories": [
