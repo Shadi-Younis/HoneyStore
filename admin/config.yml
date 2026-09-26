@@ -17,14 +17,14 @@ collections:
         format: "json"
         fields:
           - { name: "products", label: "المنتجات", widget: "list", fields: [
-              { name: "id", label: "المعرف (لا يتكرر)", widget: "string" },
-              { name: "name", label: "الاسم", widget: "string" },
-              { name: "description", label: "الوصف", widget: "text" },
-              { name: "price", label: "السعر (شيكل)", widget: "number", value_type: "float" },
-              { name: "image", label: "الصورة", widget: "image" },
-              { name: "category", label: "القسم الرئيسي", widget: "select", options: ["honey", "herbs"] },
-              { name: "subcategory", label: "القسم الفرعي (اختياري)", widget: "string", required: false },
-              { name: "inStock", label: "متوفر بالمخزون", widget: "boolean", default: true }
+              { name: "image", label: "الصورة", widget: "image", hint: "اختر صورة واضحة للمنتج بصيغة jpg أو png أو webp" },
+              { name: "name", label: "الاسم", widget: "string", hint: "اسم المنتج كما سيظهر للزبون" },
+              { name: "price", label: "السعر (شيكل)", widget: "number", value_type: "float", hint: "السعر بالشيكل، أرقام فقط بدون كتابة كلمة شيكل" },
+              { name: "description", label: "الوصف", widget: "text", hint: "وصف قصير للمنتج، سطرين إلى ثلاثة أسطر تكفي" },
+              { name: "category", label: "القسم الرئيسي", widget: "select", options: ["honey", "herbs"], hint: "اختر القسم الرئيسي الذي ينتمي إليه المنتج" },
+              { name: "subcategory", label: "القسم الفرعي (اختياري)", widget: "string", required: false, hint: "اكتب اسم القسم الفرعي (مثال: الجهاز الهضمي). إذا كان هذا قسماً جديداً تماماً، لا تنسَ إضافته أيضاً من قسم (التصنيفات) في القائمة الجانبية حتى يظهر بشكل صحيح في الموقع." },
+              { name: "inStock", label: "متوفر بالمخزون", widget: "boolean", default: true },
+              { name: "id", label: "المعرف (لا يتكرر)", widget: "string", hint: "معرف فريد بالإنجليزية بدون مسافات، يستخدمه الموقع داخلياً (لا يظهر للزبون)" }
             ]}
 
       - name: "categories"
@@ -34,7 +34,7 @@ collections:
         format: "json"
         fields:
           - { name: "categories", label: "التصنيفات", widget: "list", fields: [
-              { name: "id", label: "المعرف (لا يتكرر)", widget: "string" },
-              { name: "label", label: "الاسم بالعربي", widget: "string" },
-              { name: "parent", label: "القسم الأب (اتركه فارغاً للأقسام الرئيسية)", widget: "string", required: false }
+              { name: "id", label: "المعرف (لا يتكرر)", widget: "string", hint: "معرف فريد بالإنجليزية بدون مسافات، يستخدمه الموقع داخلياً (مثال: digestive)" },
+              { name: "label", label: "الاسم بالعربي", widget: "string", hint: "الاسم الذي سيظهر للزبون بالعربي (مثال: الجهاز الهضمي)" },
+              { name: "parent", label: "القسم الأب (اتركه فارغاً للأقسام الرئيسية)", widget: "string", required: false, hint: "إذا كان هذا تصنيفاً فرعياً تحت الطب البديل، اكتب herbs هنا. اتركه فارغاً إذا كان تصنيفاً رئيسياً جديداً." }
             ]}
