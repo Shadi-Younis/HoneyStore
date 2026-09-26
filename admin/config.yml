@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: Shadi-Younis/HoneyStore
+  branch: master
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "store_data"
+    label: "بيانات المتجر"
+    files:
+      - name: "products"
+        label: "المنتجات"
+        label_singular: "منتج"
+        file: "products.json"
+        format: "json"
+        fields:
+          - { name: "products", label: "المنتجات", widget: "list", fields: [
+              { name: "id", label: "المعرف (لا يتكرر)", widget: "string" },
+              { name: "name", label: "الاسم", widget: "string" },
+              { name: "description", label: "الوصف", widget: "text" },
+              { name: "price", label: "السعر (شيكل)", widget: "number", value_type: "float" },
+              { name: "image", label: "الصورة", widget: "image" },
+              { name: "category", label: "القسم الرئيسي", widget: "select", options: ["honey", "herbs"] },
+              { name: "subcategory", label: "القسم الفرعي (اختياري)", widget: "string", required: false },
+              { name: "inStock", label: "متوفر بالمخزون", widget: "boolean", default: true }
+            ]}
+
+      - name: "categories"
+        label: "التصنيفات"
+        label_singular: "تصنيف"
+        file: "products.json"
+        format: "json"
+        fields:
+          - { name: "categories", label: "التصنيفات", widget: "list", fields: [
+              { name: "id", label: "المعرف (لا يتكرر)", widget: "string" },
+              { name: "label", label: "الاسم بالعربي", widget: "string" },
+              { name: "parent", label: "القسم الأب (اتركه فارغاً للأقسام الرئيسية)", widget: "string", required: false }
+            ]}
