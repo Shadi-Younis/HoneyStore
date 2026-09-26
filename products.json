@@ -1,10 +1,4 @@
 {
-  "categories": [
-    { "id": "honey", "label": "عسل", "parent": null },
-    { "id": "herbs", "label": "الطب البديل", "parent": null },
-    { "id": "digestive", "label": "الجهاز الهضمي", "parent": "herbs" },
-    { "id": "respiratory", "label": "الجهاز التنفسي", "parent": "herbs" }
-  ],
   "products": [
     {
       "id": "wildflower-honey",
@@ -13,6 +7,7 @@
       "price": 80,
       "image": "images/wildflower-honey.webp",
       "category": "honey",
+      "subcategory": "",
       "inStock": false
     },
     {
@@ -22,6 +17,7 @@
       "price": 90,
       "image": "images/eucalyptus-honey.webp",
       "category": "honey",
+      "subcategory": "",
       "inStock": false
     },
     {
@@ -31,6 +27,7 @@
       "price": 150,
       "image": "images/sidr-honey.webp",
       "category": "honey",
+      "subcategory": "",
       "inStock": true
     },
     {
@@ -40,6 +37,7 @@
       "price": 50,
       "image": "images/bee-pollen.webp",
       "category": "honey",
+      "subcategory": "",
       "inStock": true
     },
     {
@@ -49,6 +47,7 @@
       "price": 50,
       "image": "images/honey-nuts.webp",
       "category": "honey",
+      "subcategory": "",
       "inStock": true
     },
     {
@@ -110,6 +109,28 @@
       "category": "herbs",
       "subcategory": "respiratory",
       "inStock": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "honey",
+      "label": "عسل",
+      "parent": null
+    },
+    {
+      "id": "herbs",
+      "label": "الطب البديل",
+      "parent": null
+    },
+    {
+      "id": "digestive",
+      "label": "الجهاز الهضمي",
+      "parent": "herbs"
+    },
+    {
+      "id": "respiratory",
+      "label": "الجهاز التنفسي",
+      "parent": "herbs"
     }
   ]
 }
