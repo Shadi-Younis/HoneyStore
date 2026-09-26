@@ -7,9 +7,9 @@
     <meta name="theme-color" content="#b8860b">
     <meta property="og:title" content="متجر شهد وبركة | للعسل والمنتجات العشبية">
     <meta property="og:description" content="أجود أنواع العسل الطبيعي والمنتجات العشبية الطبيعية، من المناحل والمزارع مباشرة إليك.">
-    <meta property="og:image" content="https://shahd-baraka.vercel.app/images/og-image.jpg">
+    <meta property="og:image" content="https://shahd-baraka-store.netlify.app/images/og-image.jpg">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shahd-baraka.vercel.app/">
+    <meta property="og:url" content="https://shahd-baraka-store.netlify.app/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -47,6 +47,8 @@
     <button onclick="filterSelection('herbs')">الطب البديل</button>
 </section>
 
+<div id="subcategory-filter" class="subcategory-filter"></div>
+
 <div class="container">
     <div class="products-grid" id="products-grid">
         <!-- Products will be injected here via JavaScript -->
@@ -58,8 +60,6 @@
     <p>تواصل معنا: <span id="footer-phone">0522344536</span> </p>
     <p>جميع الحقوق محفوظة لمتجر شهد وبركة &copy; 2026</p>
 </footer>
-
-<script src="script.js"></script>
 
 <div id="aboutModal" class="modal">
     <div class="modal-content">
@@ -106,5 +106,9 @@
         </div>
     </div>
 </div>
+<script src="config.js"></script>
+<script src="store.js"></script>
+<script src="cart.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

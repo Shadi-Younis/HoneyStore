@@ -164,6 +164,23 @@ nav ul li a:hover {
     color: white !important;
 }
 
+.subcategory-filter {
+    display: none;
+    text-align: center;
+    margin: -20px 0 30px;
+}
+
+.subcategory-filter select {
+    padding: 8px 20px;
+    border: 2px solid #b8860b;
+    border-radius: 20px;
+    background: transparent;
+    color: #b8860b;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 /* 5. معرض المنتجات */
 .container {
     padding: 20px 5% 50px;
