@@ -7,7 +7,7 @@
       "description": "طبيعي مستخلص من رحيق أزهار البرية المتنوعة.",
       "category": "honey",
       "subcategory": "",
-      "inStock": true,
+      "inStock": false,
       "id": "wildflower-honey"
     },
     {
