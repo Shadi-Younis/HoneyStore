@@ -3,11 +3,11 @@
     {
       "image": "images/wildflower-honey.webp",
       "name": "عسل زهور برية",
-      "price": 80,
+      "price": 100,
       "description": "طبيعي مستخلص من رحيق أزهار البرية المتنوعة.",
       "category": "honey",
       "subcategory": "",
-      "inStock": false,
+      "inStock": true,
       "id": "wildflower-honey"
     },
     {
