@@ -131,6 +131,56 @@
       "id": "respiratory",
       "label": "الجهاز التنفسي",
       "parent": "herbs"
+    },
+    {
+      "id": "immunity",
+      "label": "المناعة",
+      "parent": "herbs"
+    },
+    {
+      "id": "sleep-nerves",
+      "label": "الأعصاب والنوم",
+      "parent": "herbs"
+    },
+    {
+      "id": "joints-bones",
+      "label": "المفاصل والعظام",
+      "parent": "herbs"
+    },
+    {
+      "id": "heart-circulation",
+      "label": "القلب والدورة الدموية",
+      "parent": "herbs"
+    },
+    {
+      "id": "urinary",
+      "label": "الكلى والمسالك البولية",
+      "parent": "herbs"
+    },
+    {
+      "id": "womens-health",
+      "label": "صحة المرأة",
+      "parent": "herbs"
+    },
+    {
+      "id": "mens-health",
+      "label": "صحة الرجل",
+      "parent": "herbs"
+    },
+    {
+      "id": "energy",
+      "label": "الطاقة والحيوية",
+      "parent": "herbs"
+    },
+    {
+      "id": "weight",
+      "label": "الوزن والتنحيف",
+      "parent": "herbs"
+    },
+    {
+      "id": "blood-sugar",
+      "label": "السكري وتوازن السكر",
+      "parent": "herbs"
     }
   ]
 }

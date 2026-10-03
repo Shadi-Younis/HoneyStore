@@ -4,13 +4,20 @@
 (function () {
     function applySubcategoryFilter(sub) {
         const items = document.querySelectorAll('.product-item.herbs');
+        let visibleCount = 0;
         items.forEach(item => {
             if (sub === 'all' || item.dataset.subcategory === sub) {
                 item.style.display = 'block';
+                visibleCount++;
             } else {
                 item.style.display = 'none';
             }
         });
+
+        const emptyMessage = document.getElementById('products-empty');
+        if (emptyMessage) {
+            emptyMessage.hidden = visibleCount !== 0;
+        }
     }
 
     function renderSubcategoryFilter(category) {
@@ -58,6 +65,12 @@
     function filterSelection(category) {
         let products = document.getElementsByClassName("product-item");
         let buttons = document.querySelectorAll(".filter-section button");
+
+        // إخفاء رسالة "لا توجد منتجات" عند تبديل القسم الرئيسي؛ renderSubcategoryFilter/applySubcategoryFilter تقرر إظهارها من جديد عند الحاجة
+        const productsEmpty = document.getElementById("products-empty");
+        if (productsEmpty) {
+            productsEmpty.hidden = true;
+        }
 
         // إظهار وإخفاء المنتجات حسب القسم
         for (let i = 0; i < products.length; i++) {

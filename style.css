@@ -200,6 +200,13 @@ nav ul li a:hover {
     margin-top: 25px;
 }
 
+.products-empty {
+    width: 100%;
+    text-align: center;
+    color: #888;
+    padding: 40px 20px;
+}
+
 .product-item {
     background: white;
     border-radius: 15px;
