@@ -170,15 +170,56 @@ nav ul li a:hover {
     margin: -20px 0 30px;
 }
 
-.subcategory-filter select {
-    padding: 8px 20px;
-    border: 2px solid #b8860b;
-    border-radius: 20px;
-    background: transparent;
+.subcategory-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.subcategory-chip {
+    padding: 4px 14px;
+    border: 1px solid #e0c278;
+    border-radius: 999px;
+    background: white;
     color: #b8860b;
-    font-size: 1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
     font-weight: bold;
     cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.subcategory-chip:hover {
+    background-color: #b8860b;
+    color: white;
+}
+
+.subcategory-chip.active {
+    background-color: #b8860b;
+    border-color: #b8860b;
+    color: white;
+}
+
+.subcategory-chip:focus-visible {
+    outline: 2px solid #b8860b;
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .subcategory-chips {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .subcategory-chips::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 /* 5. معرض المنتجات */

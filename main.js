@@ -39,26 +39,36 @@
             return;
         }
 
-        const select = document.createElement('select');
-        select.id = 'subcategory-select';
+        const chips = document.createElement('div');
+        chips.className = 'subcategory-chips';
+        chips.setAttribute('role', 'group');
+        chips.setAttribute('aria-label', 'أقسام الطب البديل');
 
-        const allOption = document.createElement('option');
-        allOption.value = 'all';
-        allOption.textContent = 'الكل';
-        select.appendChild(allOption);
+        function createChip(subId, label, isActive) {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'subcategory-chip' + (isActive ? ' active' : '');
+            chip.dataset.sub = subId;
+            chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            chip.textContent = label;
+            chip.addEventListener('click', () => {
+                chips.querySelectorAll('.subcategory-chip').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
+                chip.classList.add('active');
+                chip.setAttribute('aria-pressed', 'true');
+                applySubcategoryFilter(subId);
+            });
+            return chip;
+        }
 
+        chips.appendChild(createChip('all', 'الكل', true));
         subcategories.forEach(sub => {
-            const option = document.createElement('option');
-            option.value = sub.id;
-            option.textContent = sub.label;
-            select.appendChild(option);
+            chips.appendChild(createChip(sub.id, sub.label, false));
         });
 
-        select.addEventListener('change', () => {
-            applySubcategoryFilter(select.value);
-        });
-
-        container.appendChild(select);
+        container.appendChild(chips);
         container.style.display = 'block';
     }
 
