@@ -17,7 +17,7 @@ collections:
         format: "json"
         fields:
           - { name: "products", label: "المنتجات", widget: "list", fields: [
-              { name: "image", label: "الصورة", widget: "image", hint: "اختر صورة واضحة للمنتج بصيغة jpg أو png أو webp" },
+              { name: "image", label: "الصورة", widget: "image", hint: "اختر صورة واضحة للمنتج بصيغة ⁦jpg⁩ أو ⁦png⁩ أو ⁦webp⁩" },
               { name: "name", label: "الاسم", widget: "string", hint: "اسم المنتج كما سيظهر للزبون" },
               { name: "price", label: "السعر (شيكل)", widget: "number", value_type: "float", hint: "السعر بالشيكل، أرقام فقط بدون كتابة كلمة شيكل" },
               { name: "description", label: "الوصف", widget: "text", hint: "وصف قصير للمنتج، سطرين إلى ثلاثة أسطر تكفي" },
@@ -34,7 +34,7 @@ collections:
         format: "json"
         fields:
           - { name: "categories", label: "التصنيفات", widget: "list", hint: "لا تحذف تصنيفاً ما زال مستخدَماً في أي منتج؛ أعد تعيين تلك المنتجات إلى تصنيف آخر أولاً.", fields: [
-              { name: "id", label: "المعرف (لا يتكرر)", widget: "string", pattern: ["^[a-z0-9-]+$", "يجب أن يتكون المعرف من حروف إنجليزية صغيرة وأرقام وشرطات (-) فقط، بدون مسافات أو حروف عربية"], hint: "معرف فريد بالإنجليزية الصغيرة فقط، بدون مسافات، مثال: skin أو women-health. لا تغيّره بعد أن يُستخدم في أي منتج." },
+              { name: "id", label: "المعرف (لا يتكرر)", widget: "string", pattern: ["^[a-z0-9-]+$", "يجب أن يتكون المعرف من حروف إنجليزية صغيرة وأرقام وشرطات (-) فقط، بدون مسافات أو حروف عربية"], hint: "معرف فريد بالإنجليزية الصغيرة فقط، بدون مسافات، مثال: ⁦skin⁩ أو ⁦women-health⁩. لا تغيّره بعد أن يُستخدم في أي منتج." },
               { name: "label", label: "الاسم بالعربي", widget: "string", hint: "الاسم اللي بيظهر للزبون بالعربي" },
-              { name: "parent", label: "القسم الأب (اتركه فارغاً للأقسام الرئيسية)", widget: "string", required: false, default: "herbs", hint: "إذا كان هذا تصنيفاً فرعياً تحت الطب البديل، اكتب herbs هنا. اتركه فارغاً إذا كان تصنيفاً رئيسياً جديداً." }
+              { name: "parent", label: "القسم الأب (اتركه فارغاً للأقسام الرئيسية)", widget: "string", required: false, default: "herbs", hint: "للأقسام الفرعية تحت الطب البديل اترك القيمة كما هي: ⁦herbs⁩. وللقسم الرئيسي الجديد امسح القيمة واتركها فارغة." }
             ]}
