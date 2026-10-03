@@ -22,17 +22,10 @@ collections:
               { name: "price", label: "السعر (شيكل)", widget: "number", value_type: "float", hint: "السعر بالشيكل، أرقام فقط بدون كتابة كلمة شيكل" },
               { name: "description", label: "الوصف", widget: "text", hint: "وصف قصير للمنتج، سطرين إلى ثلاثة أسطر تكفي" },
               { name: "category", label: "القسم الرئيسي", widget: "select", options: ["honey", "herbs"], hint: "اختر القسم الرئيسي الذي ينتمي إليه المنتج" },
-              { name: "subcategory", label: "القسم الفرعي (اختياري)", widget: "relation", collection: "store_data", file: "categories", value_field: "{{categories.*.id}}", search_fields: ["{{categories.*.label}}"], display_fields: ["{{categories.*.label}}"], required: false, hint: "اختر قسماً فرعياً للأعشاب فقط. إذا القسم مش موجود، أضفه أولاً من «التصنيفات»" },
+              { name: "subcategory", label: "القسم الفرعي (اختياري)", widget: "relation", collection: "store_data", file: "products", value_field: "{{categories.*.id}}", search_fields: ["{{categories.*.label}}"], display_fields: ["{{categories.*.label}}"], required: false, hint: "اختر قسماً فرعياً للأعشاب فقط. إذا القسم مش موجود، أضفه من قائمة «التصنيفات» أسفل الصفحة واحفظ أولاً" },
               { name: "inStock", label: "متوفر بالمخزون", widget: "boolean", default: true },
               { name: "id", label: "المعرف (لا يتكرر)", widget: "string", hint: "معرف فريد بالإنجليزية بدون مسافات، يستخدمه الموقع داخلياً (لا يظهر للزبون)" }
             ]}
-
-      - name: "categories"
-        label: "التصنيفات"
-        label_singular: "تصنيف"
-        file: "products.json"
-        format: "json"
-        fields:
           - { name: "categories", label: "التصنيفات", widget: "list", hint: "لا تحذف تصنيفاً ما زال مستخدَماً في أي منتج؛ أعد تعيين تلك المنتجات إلى تصنيف آخر أولاً.", fields: [
               { name: "id", label: "المعرف (لا يتكرر)", widget: "string", pattern: ["^[a-z0-9-]+$", "يجب أن يتكون المعرف من حروف إنجليزية صغيرة وأرقام وشرطات (-) فقط، بدون مسافات أو حروف عربية"], hint: "معرف فريد بالإنجليزية الصغيرة فقط، بدون مسافات، مثال: ⁦skin⁩ أو ⁦women-health⁩. لا تغيّره بعد أن يُستخدم في أي منتج." },
               { name: "label", label: "الاسم بالعربي", widget: "string", hint: "الاسم اللي بيظهر للزبون بالعربي" },
